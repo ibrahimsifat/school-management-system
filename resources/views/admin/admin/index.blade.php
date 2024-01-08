@@ -1,7 +1,7 @@
-<x-layout>
+<x-layouts.app>
     <div class="content-wrapper">
 
-        <x-contentHeader title="Admin List" home='Home' homeUrl='#' pageTitle="Admin List" />
+        <x-contentHeader title="Admin List" home='Home' routeName='dashboard' pageTitle="Admin List" />
 
         <section class="content">
             <div class="container-fluid">
@@ -75,4 +75,4 @@
         </section>
 
     </div>
-</x-layout>
+</x-layouts.app>
