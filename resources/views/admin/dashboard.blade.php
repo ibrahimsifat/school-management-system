@@ -2,7 +2,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
 
-        <x-contentHeader title="Dashboard" home='Home' routeName="dashboard" pageTitle="Dashboard" />
+        <x-contentHeader title="Dashboard" home='Home' url="admin/dashboard" pageTitle="Dashboard" />
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">

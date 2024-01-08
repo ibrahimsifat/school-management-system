@@ -10,9 +10,23 @@ class AuthController extends Controller
     public function index(Request $request)
     {
 
-        if (Auth::check())
-            return redirect()->route('dashboard');
+        if (Auth::user()) {
+            if (Auth::user()->role == 'student')
+                return redirect('student/dashboard')
+                    ->with('success', 'You are logged in successfully');
 
+            if (Auth::user()->role == 'teacher')
+                return redirect('teacher/dashboard')
+                    ->with('success', 'You are logged in successfully');
+
+            if (Auth::user()->role == 'parent')
+                return redirect('parent/dashboard')
+                    ->with('success', 'You are logged in successfully');
+
+            if (Auth::user()->role == 'admin')
+                return redirect('admin/dashboard')
+                    ->with('success', 'You are logged in successfully');
+        }
         return view('auth.login');
     }
     public function login(Request $request)
@@ -26,7 +40,22 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ], $remember)) {
-            return redirect()->route('dashboard');
+            // Authentication passed...
+            if (Auth::user()->role == 'student')
+                return redirect('student/dashboard')
+                    ->with('success', 'You are logged in successfully');
+
+            if (Auth::user()->role == 'teacher')
+                return redirect('teacher/dashboard')
+                    ->with('success', 'You are logged in successfully');
+
+            if (Auth::user()->role == 'parent')
+                return redirect('parent/dashboard')
+                    ->with('success', 'You are logged in successfully');
+
+            if (Auth::user()->role == 'admin')
+                return redirect('admin/dashboard')
+                    ->with('success', 'You are logged in successfully');
         } else {
             return redirect()->back()->with('error', 'Enter valid credentials');
         }

@@ -6,7 +6,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route($routeName) }}">{{ $home }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url($url) }}">{{ $home }}</a></li>
                     <li class="breadcrumb-item active">{{ $pageTitle }}</li>
                 </ol>
             </div>

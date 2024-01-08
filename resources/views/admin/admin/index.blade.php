@@ -1,7 +1,7 @@
 <x-layouts.app>
     <div class="content-wrapper">
 
-        <x-contentHeader title="Admin List" home='Home' routeName='dashboard' pageTitle="Admin List" />
+        <x-contentHeader title="Admin List" home='Home' url='admin/dashboard' pageTitle="Admin List" />
 
         <section class="content">
             <div class="container-fluid">
