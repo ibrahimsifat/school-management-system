@@ -1,13 +1,14 @@
 <x-layouts.guest>
     <div class="login-box">
-        <!-- /.login-logo -->
+
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="{{ url('/public/index2.html') }}" class="h1"><b>Login</b>here</a>
+                <a href="{{ route('login') }}" class="h1"><b>Login</b>here</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start </p>
                 @include('utils._messages')
+
                 <form action="{{ url('login') }}" method="post">
                     {{ @csrf_field() }}
                     <div class="input-group mb-3">
@@ -41,15 +42,15 @@
                 </form>
 
 
-                <p class="mb-1 mt-2">
-                    <a href="forgot-password.html">I forgot my password</a>
+                <p class="mb-1 mt-2 text-center">
+                    <a href="{{ route('forgotPassword') }}">I forgot my password</a>
                 </p>
                 <p class="mb-0">
                     <a href="register.html" class="text-center">Register a new membership</a>
                 </p>
             </div>
-            <!-- /.card-body -->
+
         </div>
-        <!-- /.card -->
+
     </div>
 </x-layouts.guest>

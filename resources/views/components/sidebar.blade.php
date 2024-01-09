@@ -15,7 +15,7 @@
                         alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                 </div>
             </div>
 
@@ -24,7 +24,10 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
-
+                    @php
+                        $path = Request::path();
+                        $role = Auth::user()->role;
+                    @endphp
                     {{-- <li class="nav-item menu-open">
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -54,15 +57,43 @@
                             </li>
                         </ul>
                     </li> --}}
+                    @if ($role === 'admin')
+                        {
+                        <x-sidebar.menuItem :$path text='Dashboard' url='admin/dashboard'
+                            iconText='fas fa-tachometer-alt' />
 
 
-                    <x-sidebar.menuItem text='Dashboard' url='/admin/dashboard' iconText='fas fa-tachometer-alt' />
+                        <x-sidebar.menuItem :$path text='Admin' url='admin/dashboard/list' iconText='fas fa-user' />
 
-                    <x-sidebar.menuItem text='Admin' url='/admin/dashboard/list' iconText='fas fa-user' />
+                        <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
+                        }
+                    @elseif ($role === 'student')
+                        <x-sidebar.menuItem :$path text='Dashboard' url='/student/dashboard'
+                            iconText='fas fa-tachometer-alt' />
+                        <x-sidebar.menuItem :$path text='Student' url='/student/dashboard/list'
+                            iconText='fas fa-user' />
+
+                        <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
+                    @elseif ($role === 'teacher')
+                        <x-sidebar.menuItem :$path text='Dashboard' url='/teacher/dashboard'
+                            iconText='fas fa-tachometer-alt' />
+                        <x-sidebar.menuItem :$path text='Teacher' url='/teacher/dashboard/list'
+                            iconText='fas fa-user' />
+
+                        <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
+                    @elseif ($role === 'parent')
+                        <x-sidebar.menuItem :$path text='Dashboard' url='/parent/dashboard'
+                            iconText='fas fa-tachometer-alt' />
+                        <x-sidebar.menuItem :$path text='Parent' url='/parent/dashboard/list' iconText='fas fa-user' />
+
+                        <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
+                    @endif
+
+
 
                 </ul>
             </nav>
-            <!-- /.sidebar-menu -->
+
         </div>
-        <!-- /.sidebar -->
+
     </aside>
