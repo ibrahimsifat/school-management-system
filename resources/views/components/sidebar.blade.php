@@ -63,28 +63,28 @@
                             iconText='fas fa-tachometer-alt' />
 
 
-                        <x-sidebar.menuItem :$path text='Admin' url='admin/dashboard/list' iconText='fas fa-user' />
+                        <x-sidebar.menuItem :$path text='Admin' url='admin/list' iconText='fas fa-user' />
+
+                        <x-sidebar.menuItem :$path text='Course' url='admin/courses' iconText='fas fa-book' />
 
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
                         }
                     @elseif ($role === 'student')
                         <x-sidebar.menuItem :$path text='Dashboard' url='/student/dashboard'
                             iconText='fas fa-tachometer-alt' />
-                        <x-sidebar.menuItem :$path text='Student' url='/student/dashboard/list'
-                            iconText='fas fa-user' />
+                        <x-sidebar.menuItem :$path text='Student' url='/student/list' iconText='fas fa-user' />
 
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
                     @elseif ($role === 'teacher')
                         <x-sidebar.menuItem :$path text='Dashboard' url='/teacher/dashboard'
                             iconText='fas fa-tachometer-alt' />
-                        <x-sidebar.menuItem :$path text='Teacher' url='/teacher/dashboard/list'
-                            iconText='fas fa-user' />
+                        <x-sidebar.menuItem :$path text='Teacher' url='/teacher/list' iconText='fas fa-user' />
 
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
                     @elseif ($role === 'parent')
                         <x-sidebar.menuItem :$path text='Dashboard' url='/parent/dashboard'
                             iconText='fas fa-tachometer-alt' />
-                        <x-sidebar.menuItem :$path text='Parent' url='/parent/dashboard/list' iconText='fas fa-user' />
+                        <x-sidebar.menuItem :$path text='Parent' url='/parent/list' iconText='fas fa-user' />
 
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
                     @endif

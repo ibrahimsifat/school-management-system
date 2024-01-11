@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,12 +48,22 @@ Route::group(['prefix' => 'parent', 'middleware' => 'parent'], function () {
 
 //admin group route
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/dashboard/list', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/dashboard/create', [AdminController::class, 'create'])->name('admin.create');
-    Route::post('/dashboard/create', [AdminController::class, 'store']);
-    Route::get('/dashboard/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
-    Route::post('/dashboard/edit/{id}', [AdminController::class, 'update'])->name('admin.edit');
-    Route::get('/dashboard/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    // admin route
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/list', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
+    Route::post('/create', [AdminController::class, 'store']);
+    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::post('/edit/{id}', [AdminController::class, 'update']);
+    Route::get('/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+
+
+    /// course route
+    Route::get('/courses', [CourseController::class, 'index'])->name('course.index');
+    Route::get('/courses/create', [CourseController::class, 'create'])->name('course.create');
+    Route::post('/courses/create', [CourseController::class, 'store']);
+    Route::get('/courses/edit/{id}', [CourseController::class, 'edit'])->name('course.edit');
+    Route::post('/courses/edit/{id}', [CourseController::class, 'update']);
+    Route::get('/courses/destroy/{id}', [CourseController::class, 'destroy']);
 });

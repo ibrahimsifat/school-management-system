@@ -3,7 +3,7 @@
         <x-slot:title>
             {{ $title }}
         </x-slot:title>
-        <x-contentHeader :$title home='Home' url='admin/dashboard' pageTitle="Create Admin" />
+        <x-contentHeader :$title home='Home' url='admin/dashboard' pageTitle="Create Course" />
 
         <section class="content">
             <div class="container-fluid">
@@ -18,21 +18,26 @@
                                 <div class="card-body">
 
                                     <div class="form-group">
-                                        <label for='name'>Name </label>
+                                        <label for='name'>Class Name </label>
                                         <input type='name' class="form-control" id='name' name='name'
                                             required placeholder="Name"value={{ old('name') }}>
                                     </div>
-
                                     <div class="form-group">
-                                        <label for='email'>Email </label>
-                                        <input type='email' class="form-control" id='email' name='email'
-                                            required placeholder="Email"value={{ old('email') }}>
+                                        <label for='description'>Description </label>
+                                        <input type='description' class="form-control" id='description'
+                                            name='description' required
+                                            placeholder="Description"value={{ old('description') }}>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for='Status'>Status </label>
+                                        <select type='status' class="form-control" id='status' name='status'
+                                            value={{ old('status') }}>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                            <option value="pending">Pending</option>
+                                        </select>
                                     </div>
 
-
-                                    <p class="text-danger">{{ $errors->first('email') }}</p>
-                                    <x-form.group label='Password' htmlFor='password' name='password' type='password'
-                                        placeholder='Password' required='true' />
 
 
 
@@ -40,7 +45,7 @@
 
 
                                 <div class="card-footer">
-                                    <x-button type='submit' label='Create Admin' class="btn-block" />
+                                    <x-button type='submit' label='Create Course' class="btn-block" />
                                 </div>
                             </form>
                         </div>

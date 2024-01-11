@@ -20,14 +20,14 @@
                                     <div class="form-group">
                                         <label for="name">Name </label>
                                         <input type="name" class="form-control" placeholder="Name" name="name"
-                                            value={{ old('name'), $user->name }} required>
+                                            value={{ $user->name }} required>
 
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Email">Email </label>
                                         <input type="email" class="form-control" placeholder="Email" name="email"
-                                            id="Email" value={{ old('email'), $user->email }} required>
+                                            id="Email" value={{ $user->email }} required>
                                         <p class="text-danger">{{ $errors->first('email') }}
                                     </div>
                                     <div class="form-group">
