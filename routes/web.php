@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,4 +67,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/courses/edit/{id}', [CourseController::class, 'edit'])->name('course.edit');
     Route::post('/courses/edit/{id}', [CourseController::class, 'update']);
     Route::get('/courses/destroy/{id}', [CourseController::class, 'destroy']);
+
+    /// subject route
+    Route::get('/subjects', [SubjectController::class, 'index'])->name('subject.index');
+    Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subject.create');
+    Route::post('/subjects/create', [SubjectController::class, 'store']);
+    Route::get('/subjects/edit/{id}', [SubjectController::class, 'edit'])->name('subject.edit');
+    Route::post('/subjects/edit/{id}', [SubjectController::class, 'update']);
+    Route::get('/subjects/destroy/{id}', [SubjectController::class, 'destroy']);
 });

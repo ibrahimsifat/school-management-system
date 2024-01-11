@@ -67,6 +67,8 @@
 
                         <x-sidebar.menuItem :$path text='Course' url='admin/courses' iconText='fas fa-book' />
 
+                        <x-sidebar.menuItem :$path text='Subject' url='admin/subjects' iconText='fas fa-book' />
+
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
                         }
                     @elseif ($role === 'student')
