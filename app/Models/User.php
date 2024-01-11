@@ -45,13 +45,21 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    static public function getAdmins()
+    {
+        return self::where('role', 'admin')->orderBy('id', 'desc')->get();
+    }
     static  public function getEmailSingle($email)
     {
-        return User::where('email', '=', $email)->first();
+        return User::where('email',  $email)->first();
     }
 
+    static public function getIdSingle(int $id)
+    {
+        return User::where('id', $id)->first();
+    }
     static public function getTokenSingle($token)
     {
-        return User::where('remember_token', '=', Str::lower($token))->first();
+        return User::where('remember_token',  Str::lower($token))->first();
     }
 }

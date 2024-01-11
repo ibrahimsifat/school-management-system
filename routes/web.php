@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -24,13 +25,9 @@ Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::get('/reset/{token}', [AuthController::class, 'sendResetToken']);
 Route::post('/reset/{token}', [AuthController::class, 'resetPassword']);
 
-// Route::get('/admin/dashboard', function () {
-//     return view('admin.dashboard');
-// })->name('dashboard');
 
 
-
-
+// protected route
 
 
 //student group route
@@ -52,7 +49,10 @@ Route::group(['prefix' => 'parent', 'middleware' => 'parent'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/dashboard/list', function () {
-        return view('admin.admin.index');
-    })->name('admin.list');
+    Route::get('/dashboard/list', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/dashboard/create', [AdminController::class, 'create'])->name('admin.create');
+    Route::post('/dashboard/create', [AdminController::class, 'store']);
+    Route::get('/dashboard/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::post('/dashboard/edit/{id}', [AdminController::class, 'update'])->name('admin.edit');
+    Route::get('/dashboard/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });

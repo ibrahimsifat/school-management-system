@@ -12,16 +12,29 @@ class DashboardController extends Controller
 
         if (Auth::user()) {
             if (Auth::user()->role == 'student')
-                return view('student.dashboard');
+                return view('student.dashboard', [
+                    'title' => 'Student',
+                ]);
 
             if (Auth::user()->role == 'teacher')
-                return view('teacher.dashboard');
+                return view(
+                    'teacher.dashboard',
+                    ['title' => 'Teacher']
+                );
 
             if (Auth::user()->role == 'parent')
-                return view('parent.dashboard');
+                return view(
+                    'parent.dashboard',
+                    ['title' => 'Parent']
+                );
 
             if (Auth::user()->role == 'admin')
-                return view('admin.dashboard');
+                return view(
+                    'admin.dashboard',
+                    ['title' => 'Admin']
+                );
+        } else {
+            return redirect()->route('login');
         }
     }
 }
