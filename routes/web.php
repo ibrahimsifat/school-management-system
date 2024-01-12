@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubjectController;
+use App\Models\AssignSubject;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,4 +77,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/subjects/edit/{id}', [SubjectController::class, 'edit'])->name('subject.edit');
     Route::post('/subjects/edit/{id}', [SubjectController::class, 'update']);
     Route::get('/subjects/destroy/{id}', [SubjectController::class, 'destroy']);
+
+    /// assign_subjects route
+    Route::get('/assign_subjects', [AssignSubjectController::class, 'index'])->name('assignSubject.index');
+    Route::get('/assign_subjects/create', [AssignSubjectController::class, 'create'])->name('assignSubject.create');
+    Route::post('/assign_subjects/create', [AssignSubjectController::class, 'store']);
+    Route::get('/assign_subjects/edit/{id}', [AssignSubjectController::class, 'edit'])->name('assignSubject.edit');
+    Route::post('/assign_subjects/edit/{id}', [AssignSubjectController::class, 'update']);
+    Route::get('/assign_subjects/destroy/{id}', [AssignSubjectController::class, 'destroy']);
 });

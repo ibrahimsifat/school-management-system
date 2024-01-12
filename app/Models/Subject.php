@@ -47,12 +47,7 @@ class Subject extends Model
     }
     static public function getActiveSubjects()
     {
-        $subjects = Subject::select('subjects.*', 'users.name as created_by')
-            ->join('users', 'users.id', '=', 'subjects.created_by')
-            ->where('subjects.status', '=', 'active')
-            ->orderBy('subjects.id', 'desc')
-            ->paginate(10);
-        return $subjects;
+        return  Subject::where('status', 'active')->get();
     }
 
     static public function getSubjectById($id)

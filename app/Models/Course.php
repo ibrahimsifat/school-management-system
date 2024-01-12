@@ -47,12 +47,7 @@ class Course extends Model
     }
     static public function getActiveCourses()
     {
-        $courses = Course::select('courses.*', 'users.name as created_by')
-            ->join('users', 'users.id', '=', 'courses.created_by')
-            ->where('courses.status', '=', 'active')
-            ->orderBy('courses.id', 'desc')
-            ->paginate(10);
-        return $courses;
+        return Course::where('status', 'active')->get();
     }
 
     static public function getCourseById($id)
