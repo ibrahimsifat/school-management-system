@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['admin', 'student', 'teacher', 'parent'])->default('student');
+            $table->enum('status', ['active', 'inactive', 'pending'])->default('active');
             $table->string('admission_number')->nullable();
             $table->string('roll_number')->nullable();
             $table->string('course_id')->nullable();

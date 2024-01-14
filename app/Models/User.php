@@ -77,10 +77,13 @@ class User extends Authenticatable
 
 
         // check if email and name is searched
-        $requestedEmail = Request::get('email');
         $requestedName = Request::get('name');
+        $requestedEmail = Request::get('email');
+        $requestedCourse = Request::get('course');
         $requestedRollNumber = Request::get('roll_number');
-        $requestedDate = Request::get('date');
+        $requestedAdmissionDate = Request::get('admission_date');
+        $requestedStatus = Request::get('status');
+        $requestedReligion = Request::get('religion');
 
         if ($requestedEmail) {
             $user = $user->where('users.email', 'like', '%' . $requestedEmail . '%');
@@ -88,11 +91,20 @@ class User extends Authenticatable
         if ($requestedName) {
             $user = $user->where('users.name', 'like', '%' . $requestedName . '%');
         }
+        if ($requestedCourse) {
+            $user = $user->where('users.course_id', 'like', '%' . $requestedCourse . '%');
+        }
         if ($requestedRollNumber) {
             $user = $user->where('users.roll_number', 'like', '%' . $requestedRollNumber . '%');
         }
-        if ($requestedDate) {
-            $user = $user->whereDate('users.created_at',  $requestedDate);
+        if ($requestedAdmissionDate) {
+            $user = $user->whereDate('users.admission_date',  $requestedAdmissionDate);
+        }
+        if ($requestedStatus) {
+            $user = $user->where('users.status',  $requestedStatus);
+        }
+        if ($requestedReligion) {
+            $user = $user->where('users.religion', 'like', '%' .  $requestedReligion . '%');
         }
 
         // pagination

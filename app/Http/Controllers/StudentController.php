@@ -15,10 +15,12 @@ class StudentController extends Controller
      */
     public function index()
     {
+        $courses = Course::getActiveCourses();
         $students = User::getStudents();
         return view('admin.student.index', [
             'title' => 'Students',
-            'students' => $students
+            'students' => $students,
+            'courses' => $courses
         ]);
     }
 
