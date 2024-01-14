@@ -75,8 +75,17 @@
                                                     <div class="">
                                                         <a href="{{ url('admin/dashboard/edit/' . $admin->id) }}"
                                                             class="btn btn-warning"> Edit</a>
-                                                        <a href="{{ url('admin/dashboard/destroy/' . $admin->id) }}"
+                                                        <a data-toggle="modal"
+                                                            data-target="#exampleModalCenter{{ $admin->id }}"
                                                             class="btn btn-danger"> Delete</a>
+                                                        {{-- delete confirmation Button --}}
+                                                        <?php
+                                                        $href = url('admin/dashboard/destroy/' . $admin->id);
+                                                        $id = $admin->id;
+                                                        ?>
+                                                        <!-- Modal -->
+                                                        <x-delete-modal data='Admin' :href="$href"
+                                                            :id="$id" />
                                                     </div>
                                                 </td>
                                             </tr>
@@ -94,4 +103,5 @@
         </section>
 
     </div>
+
 </x-layouts.app>

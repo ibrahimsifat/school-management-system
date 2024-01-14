@@ -5,7 +5,10 @@ use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\UserController;
 use App\Models\AssignSubject;
 use Illuminate\Support\Facades\Route;
 
@@ -37,20 +40,34 @@ Route::post('/reset/{token}', [AuthController::class, 'resetPassword']);
 //student group route
 Route::group(['prefix' => 'student', 'middleware' => 'student'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('student.dashboard');
+
+    Route::get('/change-password', [UserController::class, 'changePassword']);
+    Route::post('/change-password', [UserController::class, 'updatePassword']);
 });
 
 //teacher group route
 Route::group(['prefix' => 'teacher', 'middleware' => 'teacher'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('teacher.dashboard');
+
+    Route::get('/change-password', [UserController::class, 'changePassword']);
+    Route::post('/change-password', [UserController::class, 'updatePassword']);
 });
 
 //parent group route
 Route::group(['prefix' => 'parent', 'middleware' => 'parent'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('parent.dashboard');
+
+    Route::get('/change-password', [UserController::class, 'changePassword']);
+    Route::post('/change-password', [UserController::class, 'updatePassword']);
 });
 
 //admin group route
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+
+    // admin profile route
+    Route::get('/change-password', [UserController::class, 'changePassword']);
+    Route::post('/change-password', [UserController::class, 'updatePassword']);
+
 
     // admin route
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -84,5 +101,25 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::post('/assign_subjects/create', [AssignSubjectController::class, 'store']);
     Route::get('/assign_subjects/edit/{id}', [AssignSubjectController::class, 'edit'])->name('assignSubject.edit');
     Route::post('/assign_subjects/edit/{id}', [AssignSubjectController::class, 'update']);
+    Route::get('/assign_subjects/edit_single/{id}', [AssignSubjectController::class, 'edit_single'])->name('assignSubject.edit_single');
+    Route::post('/assign_subjects/edit_single/{id}', [AssignSubjectController::class, 'update_single']);
     Route::get('/assign_subjects/destroy/{id}', [AssignSubjectController::class, 'destroy']);
+
+
+    // student route
+    Route::get('/students', [StudentController::class, 'index'])->name('student.index');
+    Route::get('/students/create', [StudentController::class, 'create'])->name('student.create');
+    Route::post('/students/create', [StudentController::class, 'store']);
+    Route::get('/students/edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
+    Route::post('/students/edit/{id}', [StudentController::class, 'update']);
+    Route::get('/students/destroy/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
+
+
+    // student route
+    Route::get('/files', [FileController::class, 'index'])->name('file.index');
+    Route::get('/files/create', [FileController::class, 'create'])->name('file.create');
+    Route::post('/files/create', [FileController::class, 'store']);
+    Route::get('/files/edit/{id}', [FileController::class, 'edit'])->name('file.edit');
+    Route::post('/files/edit/{id}', [FileController::class, 'update']);
+    Route::get('/files/destroy/{id}', [FileController::class, 'destroy'])->name('file.destroy');
 });

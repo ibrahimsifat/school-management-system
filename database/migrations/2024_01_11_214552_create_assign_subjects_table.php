@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('status', ['active', 'inactive', 'pending'])->default('active');
-            $table->foreignId('created_by');
+            $table->foreignId('created_by')->nullable();
             $table->foreignId('course_id')->nullable();
             $table->foreignId('subject_id')->nullable();
             $table->foreignId('updated_by')->nullable();

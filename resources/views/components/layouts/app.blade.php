@@ -59,23 +59,25 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
+    <script src={{ asset('public/plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
+    <script src={{ asset('public/plugins/jquery/jquery.min.js') }}></script>
     {{ $scripts ?? '' }}
+
     <!-- jQuery -->
-    <script src="{{ url('public/plugins/jquery/jquery.min.js') }}"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="{{ url('public/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    {{--  <!-- jQuery UI 1.11.4 -->
+        <script src="{{ url('public/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ url('public/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+        <script src="{{ url('public/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ url('public/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- ChartJS -->
-    <script src="{{ url('public/plugins/chart.js/Chart.min.js') }}"></script>
-    <!-- Sparkline -->
-    <script src="{{ url('public/plugins/sparklines/sparkline.js') }}"></script>
-    <!-- JQVMap -->
+    {{-- <!-- Bootstrap 4 -->
+        <!-- ChartJS -->
+        <!-- Sparkline -->
+        <script src="{{ url('public/plugins/sparklines/sparkline.js') }}"></script>
+        <!-- JQVMap -->
+        <script src="{{ url('public/plugins/chart.js/Chart.min.js') }}"></script>
     <script src="{{ url('public/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
     <script src="{{ url('public/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
     <!-- jQuery Knob Chart -->
@@ -94,7 +96,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ url('public/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ url('public/dist/js/pages/dashboard.js') }}"></script>
+    <script src="{{ url('public/dist/js/pages/dashboard.js') }}"></script> --}} --}}
 </body>
 
 </html>

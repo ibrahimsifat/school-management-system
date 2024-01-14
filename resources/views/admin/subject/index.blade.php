@@ -6,6 +6,9 @@
         <x-contentHeader title="Subject List" home='Home' url='admin/dashboard' pageTitle="Subject List" />
         @include('utils._messages')
         <section class="content">
+            <?php
+            $href = '';
+            ?>
             <div class="container-fluid">
                 <div class="row ">
 
@@ -98,8 +101,18 @@
                                                     <div class="">
                                                         <a href="{{ url('admin/subjects/edit/' . $subject->id) }}"
                                                             class="btn btn-warning"> Edit</a>
-                                                        <a href="{{ url('admin/subjects/destroy/' . $subject->id) }}"
+
+                                                        <a data-toggle="modal"
+                                                            data-target="#exampleModalCenter{{ $subject->id }}"
                                                             class="btn btn-danger"> Delete</a>
+                                                        {{-- delete confirmation Button --}}
+                                                        <?php
+                                                        $href = url('admin/subjects/destroy/' . $subject->id);
+                                                        $id = $subject->id;
+                                                        ?>
+                                                        <!-- Modal -->
+                                                        <x-delete-modal data='Subject' :href="$href"
+                                                            :id="$id" />
                                                     </div>
                                                 </td>
                                             </tr>
@@ -114,6 +127,8 @@
                     </div>
                 </div>
             </div>
+
+
         </section>
 
     </div>

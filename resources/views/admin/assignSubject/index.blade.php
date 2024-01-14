@@ -96,8 +96,20 @@
                                                     <div class="">
                                                         <a href="{{ url('admin/assign_subjects/edit/' . $assignSubject->id) }}"
                                                             class="btn btn-warning"> Edit</a>
-                                                        <a href="{{ url('admin/assign_subjects/destroy/' . $assignSubject->id) }}"
+                                                        <a href="{{ url('admin/assign_subjects/edit_single/' . $assignSubject->id) }}"
+                                                            class="btn btn-warning"> Edit Single</a>
+
+                                                        <a data-toggle="modal"
+                                                            data-target="#exampleModalCenter{{ $assignSubject->id }}"
                                                             class="btn btn-danger"> Delete</a>
+                                                        {{-- delete confirmation Button --}}
+                                                        <?php
+                                                        $href = url('admin/assign_subjects/destroy/' . $assignSubject->id);
+                                                        $id = $assignSubject->id;
+                                                        ?>
+                                                        <!-- Modal -->
+                                                        <x-delete-modal data='Assign Subject' :href="$href"
+                                                            :id="$id" />
                                                     </div>
                                                 </td>
                                             </tr>
@@ -115,4 +127,5 @@
         </section>
 
     </div>
+
 </x-layouts.app>

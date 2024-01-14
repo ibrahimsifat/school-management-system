@@ -71,6 +71,34 @@ class User extends Authenticatable
         $user = $user->orderBy('updated_at', 'desc')->paginate(2);
         return $user;
     }
+    static public function getStudents()
+    {
+        $user = self::select('users.*', 'courses.name as course_name')->join('courses', 'courses.id', '=', 'users.course_id', 'left')->where('users.role', 'student');
+
+
+        // check if email and name is searched
+        $requestedEmail = Request::get('email');
+        $requestedName = Request::get('name');
+        $requestedRollNumber = Request::get('roll_number');
+        $requestedDate = Request::get('date');
+
+        if ($requestedEmail) {
+            $user = $user->where('users.email', 'like', '%' . $requestedEmail . '%');
+        }
+        if ($requestedName) {
+            $user = $user->where('users.name', 'like', '%' . $requestedName . '%');
+        }
+        if ($requestedRollNumber) {
+            $user = $user->where('users.roll_number', 'like', '%' . $requestedRollNumber . '%');
+        }
+        if ($requestedDate) {
+            $user = $user->whereDate('users.created_at',  $requestedDate);
+        }
+
+        // pagination
+        $user = $user->orderBy('users.updated_at', 'desc')->paginate(8);
+        return $user;
+    }
     static  public function getEmailSingle($email)
     {
         return User::where('email',  $email)->first();
@@ -83,5 +111,9 @@ class User extends Authenticatable
     static public function getTokenSingle($token)
     {
         return User::where('remember_token',  Str::lower($token))->first();
+    }
+    public function files()
+    {
+        return $this->hasMany(File::class, 'auth_by')->latest();
     }
 }

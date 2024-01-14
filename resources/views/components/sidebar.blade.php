@@ -66,10 +66,16 @@
                         <x-sidebar.menuItem :$path text='Admin' url='admin/list' iconText='fas fa-user' />
 
                         <x-sidebar.menuItem :$path text='Course' url='admin/courses' iconText='fas fa-book' />
+                        <x-sidebar.menuItem :$path text='Gallery' url='admin/files' iconText='fas fa-image' />
 
                         <x-sidebar.menuItem :$path text='Subject' url='admin/subjects' iconText='fas fa-book' />
 
                         <x-sidebar.menuItem :$path text='Assign Subject' url='admin/assign_subjects'
+                            iconText='fas fa-book' />
+
+                        <x-sidebar.menuItem :$path text='Student' url='admin/students' iconText='fas fa-book' />
+
+                        <x-sidebar.menuItem :$path text='Change Password' url='admin/change-password'
                             iconText='fas fa-book' />
 
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />

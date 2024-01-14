@@ -175,6 +175,57 @@ class AssignSubjectController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     */
+
+    public function edit_single($id, AssignSubject $assignSubject)
+    {
+        $assignSubject = AssignSubject::getAssignSubjectById($id);
+        if (!$assignSubject)
+            return redirect()->route('assignSubject.index')->with('error', 'AssignSubject Not Found');
+
+        $subjects = Subject::getActiveSubjects();
+        $courses = Course::getActiveCourses();
+
+        if (!$assignSubject)
+            return redirect()->route('assignSubject.index')->with('error', 'AssignSubject Not Found');
+        return view('admin.assignSubject.edit_single', [
+            'title' => 'Edit AssignSubject',
+            'assignSubject' => $assignSubject,
+            'subjects' => $subjects,
+            'courses' => $courses,
+        ]);
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update_single(UpdateAssignSubjectRequest $request, AssignSubject $assignSubject)
+    {
+        $subject = AssignSubject::getAssignSubjectById($request->id);
+        if (!$subject)
+            return redirect()->back()->with('error', 'Assign Subject Not Found');
+
+        $isAssignSubject = AssignSubject::isSubjectAssigned($request->subject_id, $request->course_id);
+        if ($isAssignSubject) {
+            $isAssignSubject->status = $request->status;
+            $isAssignSubject->save();
+            return redirect()->route('assignSubject.index')->with('success', 'Status Updated Successfully');
+        } else {
+
+            $subject->name = $request->name;
+            $subject->status = $request->status;
+            $subject->course_id = $request->course_id;
+            $subject->subject_id = $request->subject_id;
+            $subject->updated_by = Auth::user()->id;
+            $subject->save();
+            return redirect()->route('assignSubject.index')->with('success', 'AssignSubject Updated Successfully');
+        }
+    }
+
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy($id, AssignSubject $assignSubject)

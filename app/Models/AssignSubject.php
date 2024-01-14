@@ -15,8 +15,6 @@ class AssignSubject extends Model
         'subject_id',
         'course_id',
         'status',
-        'created_by',
-        'updated_by'
     ];
 
     /**
