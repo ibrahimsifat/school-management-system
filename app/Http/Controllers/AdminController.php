@@ -126,4 +126,31 @@ class AdminController extends Controller
         $user->delete();
         return redirect()->route('admin.index')->with('success', 'Admin deleted successfully');
     }
+
+    public function bulkDelete(Request $request)
+    {
+        $ids = $request->input('ids', []);
+        if (empty($ids)) {
+            return redirect()->back()->with('error', 'Please select at least one admin');
+        }
+        dd($ids);
+        try {
+            foreach ($ids as $id) {
+                $user = User::getIdSingle($id);
+
+                // if ($user->role == 'admin') {
+                //     return redirect()->back()->with('error', 'You can not delete admin');
+                // }
+
+                Auth::user()->role == 'admin' ? '' : redirect()->back()->with('error', 'You are not authorized to delete admin');
+
+                Auth::user()->id == $user->id ? redirect()->back()->with('error', 'You can not delete yourself') : '';
+
+                $user->delete();
+            }
+            return redirect()->route('admin.index')->with('success', 'Admins deleted successfully');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
 }

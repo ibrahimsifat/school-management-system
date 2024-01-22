@@ -189,7 +189,7 @@ class StudentController extends Controller
             $user->height = $request->height;
             $user->weight = $request->weight;
             $user->save();
-            return redirect()->back()->with('success', 'Student created successfully');
+            return redirect()->back()->with('success', 'Student Updated successfully');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }

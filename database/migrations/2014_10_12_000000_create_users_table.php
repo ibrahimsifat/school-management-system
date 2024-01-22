@@ -27,11 +27,15 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('caste')->nullable();
+            $table->string('blood_group')->nullable();
+            $table->foreignId('guardian_id')->nullable();
+            $table->foreign('guardian_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('religion')->nullable();
             $table->string('mobile_number')->nullable();
             $table->date('admission_date')->nullable();
             $table->string('image')->nullable();
-            $table->string('blood_group')->nullable();
+            $table->string('occupation')->nullable();;
+            $table->string('address')->nullable();
             $table->string('height')->nullable();
             $table->string('weight')->nullable();
             $table->rememberToken();

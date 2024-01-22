@@ -62,7 +62,6 @@
                         <x-sidebar.menuItem :$path text='Dashboard' url='admin/dashboard'
                             iconText='fas fa-tachometer-alt' />
 
-
                         <x-sidebar.menuItem :$path text='Admin' url='admin/list' iconText='fas fa-user' />
 
                         <x-sidebar.menuItem :$path text='Course' url='admin/courses' iconText='fas fa-book' />
@@ -74,6 +73,7 @@
                             iconText='fas fa-book' />
 
                         <x-sidebar.menuItem :$path text='Student' url='admin/students' iconText='fas fa-book' />
+                        <x-sidebar.menuItem :$path text='Guardian' url='admin/guardians' iconText='fas fa-book' />
 
                         <x-sidebar.menuItem :$path text='Change Password' url='admin/change-password'
                             iconText='fas fa-book' />

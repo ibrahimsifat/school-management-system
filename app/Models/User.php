@@ -68,7 +68,7 @@ class User extends Authenticatable
         }
 
         // pagination
-        $user = $user->orderBy('updated_at', 'desc')->paginate(2);
+        $user = $user->orderBy('updated_at', 'desc')->paginate(10);
         return $user;
     }
     static public function getStudents()
@@ -111,9 +111,71 @@ class User extends Authenticatable
         $user = $user->orderBy('users.updated_at', 'desc')->paginate(8);
         return $user;
     }
+    public static function getGuardians()
+    {
+        $query = self::select('users.*', 'users.name as guardian_name')
+            ->leftJoin('users as guardians', 'users.id', '=', 'guardians.guardian_id')
+            ->where('users.role', 'parent');
+
+        // Check if email, name, and status are searched
+        $requestedEmail = request('email');
+        $requestedName = request('name');
+        $requestedGender = request('gender');
+        $requestedStatus = request('status');
+        $requestedCreatedDate = request('created_at');
+
+        if ($requestedEmail) {
+            $query->where('users.email', 'like', '%' . $requestedEmail . '%');
+        }
+
+        if ($requestedName) {
+            $query->where('users.name', 'like', '%' . $requestedName . '%');
+        }
+
+        if ($requestedGender) {
+            $query->where('users.gender', $requestedGender);
+        }
+
+        if ($requestedStatus) {
+            $query->where('users.status', $requestedStatus);
+        }
+        if ($requestedCreatedDate) {
+            $query->whereDate('users.created_at', $requestedCreatedDate);
+        }
+
+        // Pagination
+        $result = $query->orderBy('users.updated_at', 'desc')->paginate(8);
+
+        return $result;
+    }
+
+    static public function getGuardianStudents($guardianId)
+    {
+        return User::where('role', 'student')->where('guardian_id', $guardianId)->get();
+    }
+    static public function getNotGuardianStudents($guardianId)
+    {
+        return User::where('role', 'student')
+            ->where(function ($query) use ($guardianId) {
+                $query->whereNull('guardian_id')
+                    ->orWhere('guardian_id', '!=', $guardianId);
+            })
+            ->get();
+    }
+
+
     static  public function getEmailSingle($email)
     {
         return User::where('email',  $email)->first();
+    }
+
+    static public function getStudent($id)
+    {
+        return User::where('id', $id)->where('role', 'student')->first();
+    }
+    static public function getGuardian($id)
+    {
+        return User::where('id', $id)->where('role', 'parent')->first();
     }
 
     static public function getIdSingle(int $id)

@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\GuardianController;
+use App\Http\Controllers\ParentsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
@@ -77,6 +79,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
     Route::post('/edit/{id}', [AdminController::class, 'update']);
     Route::get('/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::post('/admin/bulk-delete', [AdminController::class, 'bulkDelete'])->name('admin.bulkDelete');
 
 
     /// course route
@@ -114,8 +117,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::post('/students/edit/{id}', [StudentController::class, 'update']);
     Route::get('/students/destroy/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
 
+    // guardians route guardians
+    Route::get('/guardians', [GuardianController::class, 'index'])->name('guardian.index');
+    Route::get('/guardians/create', [GuardianController::class, 'create'])->name('guardian.create');
+    Route::post('/guardians/create', [GuardianController::class, 'store']);
+    Route::get('/guardians/edit/{id}', [GuardianController::class, 'edit'])->name('guardian.edit');
+    Route::post('/guardians/edit/{id}', [GuardianController::class, 'update']);
+    Route::get('/guardians/students/edit/{id}', [GuardianController::class, 'editStudents'])->name('guardian.students.edit');
+    Route::get('/guardians/students/add/{id}/{studentId}', [GuardianController::class, 'addStudent']);
+    Route::get('/guardians/students/remove/{id}/{studentId}', [GuardianController::class, 'removeStudent']);
+    Route::get('/guardians/destroy/{id}', [GuardianController::class, 'destroy'])->name('guardian.destroy');
 
-    // student route
+
+    // file route
     Route::get('/files', [FileController::class, 'index'])->name('file.index');
     Route::get('/files/create', [FileController::class, 'create'])->name('file.create');
     Route::post('/files/create', [FileController::class, 'store']);
