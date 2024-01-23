@@ -31,6 +31,11 @@ return new class extends Migration
             $table->foreignId('guardian_id')->nullable();
             $table->foreign('guardian_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('religion')->nullable();
+            $table->string('joining_date')->nullable();
+            $table->string('marital_status')->nullable();
+            $table->string('qualification')->nullable();
+            $table->string('work_experience')->nullable();
+            $table->string('note')->nullable();
             $table->string('mobile_number')->nullable();
             $table->date('admission_date')->nullable();
             $table->string('image')->nullable();

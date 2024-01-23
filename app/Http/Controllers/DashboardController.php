@@ -24,7 +24,7 @@ class DashboardController extends Controller
 
             if (Auth::user()->role == 'parent')
                 return view(
-                    'parent.dashboard',
+                    'guardian.dashboard',
                     ['title' => 'Parent']
                 );
 

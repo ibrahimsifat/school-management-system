@@ -74,29 +74,43 @@
 
                         <x-sidebar.menuItem :$path text='Student' url='admin/students' iconText='fas fa-book' />
                         <x-sidebar.menuItem :$path text='Guardian' url='admin/guardians' iconText='fas fa-book' />
+                        <x-sidebar.menuItem :$path text='Teacher' url='admin/teachers' iconText='fas fa-book' />
 
                         <x-sidebar.menuItem :$path text='Change Password' url='admin/change-password'
                             iconText='fas fa-book' />
 
+
+                        <x-sidebar.menuItem :$path text='My Account' url='admin/my-account' iconText='fas fa-book' />
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
                         }
                     @elseif ($role === 'student')
                         <x-sidebar.menuItem :$path text='Dashboard' url='/student/dashboard'
                             iconText='fas fa-tachometer-alt' />
-                        <x-sidebar.menuItem :$path text='Student' url='/student/list' iconText='fas fa-user' />
+                        <x-sidebar.menuItem :$path text='Student' url='/students' iconText='fas fa-user' />
 
+                        <x-sidebar.menuItem :$path text='My Account' url='students/my-account' iconText='fas fa-book' />
+
+                        <x-sidebar.menuItem :$path text='Change Password' url='student/change-password'
+                            iconText='fas fa-book' />
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
                     @elseif ($role === 'teacher')
                         <x-sidebar.menuItem :$path text='Dashboard' url='/teacher/dashboard'
                             iconText='fas fa-tachometer-alt' />
-                        <x-sidebar.menuItem :$path text='Teacher' url='/teacher/list' iconText='fas fa-user' />
+                        <x-sidebar.menuItem :$path text='My Account' url='/teacher/my-account' iconText='fas fa-user' />
 
+                        <x-sidebar.menuItem :$path text='Change Password' url='teacher/change-password'
+                            iconText='fas fa-book' />
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
                     @elseif ($role === 'parent')
-                        <x-sidebar.menuItem :$path text='Dashboard' url='/parent/dashboard'
+                        <x-sidebar.menuItem :$path text='Dashboard' url='/guardians/dashboard'
                             iconText='fas fa-tachometer-alt' />
-                        <x-sidebar.menuItem :$path text='Parent' url='/parent/list' iconText='fas fa-user' />
+                        <x-sidebar.menuItem :$path text='Guardian' url='/guardians/list' iconText='fas fa-user' />
 
+                        <x-sidebar.menuItem :$path text='My Account' url='guardians/my-account'
+                            iconText='fas fa-book' />
+
+                        <x-sidebar.menuItem :$path text='Change Password' url='guardians/change-password'
+                            iconText='fas fa-book' />
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
                     @endif
 

@@ -148,6 +148,43 @@ class User extends Authenticatable
 
         return $result;
     }
+    public static function getTeachers()
+    {
+        $query = self::select('users.*', 'users.name as guardian_name')
+            // ->leftJoin('users as guardians', 'users.id', '=', 'guardians.guardian_id')
+            ->where('users.role', 'teacher');
+
+        // Check if email, name, and status are searched
+        $requestedEmail = request('email');
+        $requestedName = request('name');
+        $requestedGender = request('gender');
+        $requestedStatus = request('status');
+        $requestedCreatedDate = request('created_at');
+
+        if ($requestedEmail) {
+            $query->where('users.email', 'like', '%' . $requestedEmail . '%');
+        }
+
+        if ($requestedName) {
+            $query->where('users.name', 'like', '%' . $requestedName . '%');
+        }
+
+        if ($requestedGender) {
+            $query->where('users.gender', $requestedGender);
+        }
+
+        if ($requestedStatus) {
+            $query->where('users.status', $requestedStatus);
+        }
+        if ($requestedCreatedDate) {
+            $query->whereDate('users.created_at', $requestedCreatedDate);
+        }
+
+        // Pagination
+        $result = $query->orderBy('users.updated_at', 'desc')->paginate(8);
+
+        return $result;
+    }
 
     static public function getGuardianStudents($guardianId)
     {
@@ -163,7 +200,6 @@ class User extends Authenticatable
             ->get();
     }
 
-
     static  public function getEmailSingle($email)
     {
         return User::where('email',  $email)->first();
@@ -176,6 +212,10 @@ class User extends Authenticatable
     static public function getGuardian($id)
     {
         return User::where('id', $id)->where('role', 'parent')->first();
+    }
+    static public function getTeacher($id)
+    {
+        return User::where('id', $id)->where('role', 'teacher')->first();
     }
 
     static public function getIdSingle(int $id)

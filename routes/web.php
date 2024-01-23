@@ -10,6 +10,7 @@ use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\ParentsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use App\Models\AssignSubject;
 use Illuminate\Support\Facades\Route;
@@ -40,8 +41,11 @@ Route::post('/reset/{token}', [AuthController::class, 'resetPassword']);
 
 
 //student group route
-Route::group(['prefix' => 'student', 'middleware' => 'student'], function () {
+Route::group(['prefix' => 'students', 'middleware' => 'student'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('student.dashboard');
+
+    Route::get('/my-account', [UserController::class, 'editMyAccount'])->name('student.account');
+    Route::post('/my-account', [UserController::class, 'updateStudentAccount']);
 
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/change-password', [UserController::class, 'updatePassword']);
@@ -51,14 +55,18 @@ Route::group(['prefix' => 'student', 'middleware' => 'student'], function () {
 Route::group(['prefix' => 'teacher', 'middleware' => 'teacher'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('teacher.dashboard');
 
+    Route::get('/my-account', [UserController::class, 'editMyAccount'])->name('teacher.account');
+    Route::post('/my-account', [UserController::class, 'updateTeacherAccount']);
+
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/change-password', [UserController::class, 'updatePassword']);
 });
 
 //parent group route
-Route::group(['prefix' => 'parent', 'middleware' => 'parent'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('parent.dashboard');
-
+Route::group(['prefix' => 'guardians', 'middleware' => 'parent'], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('guardian.dashboard');
+    Route::get('/my-account', [UserController::class, 'editMyAccount'])->name('guardian.account');
+    Route::post('/my-account', [UserController::class, 'updateGuardianAccount']);
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/change-password', [UserController::class, 'updatePassword']);
 });
@@ -70,6 +78,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/change-password', [UserController::class, 'updatePassword']);
 
+    Route::get('/my-account', [UserController::class, 'editMyAccount'])->name('admin.account');
+    Route::post('/my-account', [UserController::class, 'updateAdminAccount']);
 
     // admin route
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -127,6 +137,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/guardians/students/add/{id}/{studentId}', [GuardianController::class, 'addStudent']);
     Route::get('/guardians/students/remove/{id}/{studentId}', [GuardianController::class, 'removeStudent']);
     Route::get('/guardians/destroy/{id}', [GuardianController::class, 'destroy'])->name('guardian.destroy');
+
+    // teachers route teachers
+    Route::get('/teachers', [TeacherController::class, 'index'])->name('teacher.index');
+    Route::get('/teachers/create', [TeacherController::class, 'create'])->name('teacher.create');
+    Route::post('/teachers/create', [TeacherController::class, 'store']);
+    Route::get('/teachers/edit/{id}', [TeacherController::class, 'edit'])->name('teacher.edit');
+    Route::post('/teachers/edit/{id}', [TeacherController::class, 'update']);
+    Route::get('/teachers/students/edit/{id}', [TeacherController::class, 'editStudents'])->name('teacher.students.edit');
+    Route::get('/teachers/students/add/{id}/{studentId}', [TeacherController::class, 'addStudent']);
+    Route::get('/teachers/students/remove/{id}/{studentId}', [TeacherController::class, 'removeStudent']);
+    Route::get('/teachers/destroy/{id}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
 
 
     // file route

@@ -4,7 +4,7 @@
         <x-slot:title>
             {{ $title }}
         </x-slot:title>
-        <x-contentHeader title="Guardian List" home='Home' url='guardian/dashboard' pageTitle="Guardian List" />
+        <x-contentHeader title="Teacher List" home='Home' url='teacher/dashboard' pageTitle="Teacher List" />
         @include('utils._messages')
         <section class="content">
             <div class="container-fluid">
@@ -17,11 +17,11 @@
                         <div class="card ">
                             <div class="card-header row px-5 mt-2">
                                 <div class="md-col-3">
-                                    {{-- <h3>Total Guardians: {{ $guardians->total() }}</h3> --}}
+                                    {{-- <h3>Total Teachers: {{ $teachers->total() }}</h3> --}}
                                 </div>
                                 <div class="md-col-6 ml-auto mb-3"style="text-align: right;">
-                                    <a href="{{ route('guardian.create') }}" class="btn btn-primary text-right">Create
-                                        Guardian</a>
+                                    <a href="{{ route('teacher.create') }}" class="btn btn-primary text-right">Create
+                                        Teacher</a>
                                 </div>
                             </div>
                             <div class="card-body row mx-auto">
@@ -41,6 +41,8 @@
                                             <input type="text" name="email" class="form-control"
                                                 placeholder="Email" value="{{ Request::get('email') }}">
                                         </div>
+
+
 
 
                                         <div class="form-group col-md-3">
@@ -93,7 +95,7 @@
                                                 </button>
                                             </div>
                                             <div class="mr-2">
-                                                <a href="{{ route('guardian.index') }}" class="btn  btn-warning">
+                                                <a href="{{ route('teacher.index') }}" class="btn  btn-warning">
                                                     <i class="fa fa-cancel"></i>
                                                     Clear
                                                 </a>
@@ -113,6 +115,7 @@
                                         <th>Name</th>
                                         <th>Last Name</th>
                                         <th>Email</th>
+                                        <th>Experience</th>
                                         <th>Status</th>
                                         <th>Gender</th>
                                         <th>Mobile Number</th>
@@ -121,43 +124,41 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($guardians as $guardian)
+                                    @foreach ($teachers as $teacher)
                                         <tr>
-                                            <td>{{ $guardian->id }}</td>
-                                            <td>{{ $guardian->name }}</td>
-                                            <td>{{ $guardian->last_name }}</td>
-                                            <td>{{ $guardian->email }} </td>
+                                            <td>{{ $teacher->id }}</td>
+                                            <td>{{ $teacher->name }}</td>
+                                            <td>{{ $teacher->last_name }}</td>
+                                            <td>{{ $teacher->email }} </td>
+                                            <td>{{ $teacher->work_experience }} </td>
                                             <td>
-                                                @if ($guardian->status == 'active')
+                                                @if ($teacher->status == 'active')
                                                     <span class="badge badge-success right">
-                                                        {{ $guardian->status }}</span>
+                                                        {{ $teacher->status }}</span>
                                                 @else
                                                     <span class="badge badge-danger right">
-                                                        {{ $guardian->status }}</span>
+                                                        {{ $teacher->status }}</span>
                                                 @endif
                                             </td>
 
-                                            <td>{{ $guardian->gender }} </td>
-                                            <td>{{ $guardian->mobile_number }} </td>
+                                            <td>{{ $teacher->gender }} </td>
+                                            <td>{{ $teacher->mobile_number }} </td>
 
                                             <td>
                                                 <div class="">
-                                                    <a href="{{ url('admin/guardians/edit/' . $guardian->id) }}"
+                                                    <a href="{{ url('admin/teachers/edit/' . $teacher->id) }}"
                                                         class="btn btn-warning"> Edit</a>
 
-                                                    <a href="{{ url('admin/guardians/students/edit/' . $guardian->id) }}"
-                                                        class="btn btn-primary"> Add/Edit Students</a>
-
                                                     <a data-toggle="modal"
-                                                        data-target="#exampleModalCenter{{ $guardian->id }}"
+                                                        data-target="#exampleModalCenter{{ $teacher->id }}"
                                                         class="btn btn-danger"> Delete</a>
 
                                                     <?php
-                                                    $href = url('admin/guardians/destroy/' . $guardian->id);
-                                                    $id = $guardian->id;
+                                                    $href = url('admin/teachers/destroy/' . $teacher->id);
+                                                    $id = $teacher->id;
                                                     ?>
 
-                                                    <x-delete-modal data='Guardian' :href="$href"
+                                                    <x-delete-modal data='Teacher' :href="$href"
                                                         :id="$id" />
                                                 </div>
                                             </td>
@@ -165,7 +166,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{-- <div class="mt-2 mx-auto text-center"> {{ $guardians->links() }}</div> --}}
+                            {{-- <div class="mt-2 mx-auto text-center"> {{ $teachers->links() }}</div> --}}
 
                         </div>
                     </div>

@@ -59,7 +59,7 @@ class AuthController extends Controller
                     ->with('success', 'You are logged in successfully');
 
             if (Auth::user()->role == 'parent')
-                return redirect('parent/dashboard')
+                return redirect('guardians/dashboard')
                     ->with('success', 'You are logged in successfully');
 
             if (Auth::user()->role == 'admin')
