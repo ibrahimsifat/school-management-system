@@ -198,6 +198,12 @@ class User extends Authenticatable
     {
         return  User::where('status', 'active')->where('role', 'teacher')->get();
     }
+    static public function getTeacherStudents($teacherId)
+    {
+        return User::select('users.*', '')->join('courses', 'courses.id', '=', 'users.course_id')
+            ->join('assign_class_subjects', 'assign_class_subjects.course_id', '=', 'courses.id')
+            ->join('');
+    }
     static public function getGuardianStudents($guardianId)
     {
         $user = User::select(

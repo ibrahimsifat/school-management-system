@@ -237,4 +237,20 @@ class AssignClassTeacherController extends Controller
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
+
+    /**
+     * Get Teacher Subjects
+     */
+    public function teacherSubjects(AssignClassTeacher $assignClassTeacher)
+    {
+        $id = Auth::user()->id;
+        if (Auth::user()->role != 'teacher') {
+            return redirect()->back()->with('error', 'You are not authorized to access this page');
+        }
+        $getClassesSubjects = AssignClassTeacher::getClassesSubjects($id);
+        return view('teacher.subjects', [
+            'title' => 'Teacher Subjects',
+            'getClassesSubjects' => $getClassesSubjects
+        ]);
+    }
 }

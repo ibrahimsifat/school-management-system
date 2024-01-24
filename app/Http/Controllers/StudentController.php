@@ -253,4 +253,19 @@ class StudentController extends Controller
             'subjects' => $subjects
         ]);
     }
+
+
+    /**
+     * Display the teachers Student Subjects  resource.
+     */
+
+    public function teacherStudents(Request $request)
+    {
+        $teacherId = Auth::user()->id;
+        $students = User::getTeacherStudents($teacherId);
+        return view('teacher.students', [
+            'title' => 'Teacher Students',
+            'students' => $students
+        ]);
+    }
 }

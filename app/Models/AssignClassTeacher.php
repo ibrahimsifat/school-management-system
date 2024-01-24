@@ -55,6 +55,23 @@ class AssignClassTeacher extends Model
             ->paginate(10);
         return $assignClassTeachers;
     }
+
+    static public function getClassesSubjects($teacher_id)
+    {
+        $result = AssignClassTeacher::select('assign_class_teachers.*', 'courses.name as course_name', 'subjects.name as subject_name',  'subjects.type as subject_type')
+            ->join('users', 'users.id', '=', 'assign_class_teachers.created_by')
+            ->join('courses', 'courses.id', '=', 'assign_class_teachers.course_id')
+            ->join('assign_subjects', 'assign_subjects.course_id', '=', 'courses.id')
+            ->join('subjects', 'subjects.id', '=', 'assign_subjects.subject_id')
+            ->where('assign_class_teachers.teacher_id', '=', $teacher_id)
+            ->where('assign_class_teachers.status', '=', 'active')
+            ->where('subjects.status', '=', 'active')
+            ->where('courses.status', '=', 'active')
+            ->where('assign_subjects.status', '=', 'active')
+            ->orderBy('assign_class_teachers.id', 'desc')
+            ->paginate(10);
+        return $result;
+    }
     static public function getPublishedStudentTeachers($course_id)
     {
         $assignClassTeachers = AssignClassTeacher::select('assign_class_teachers.*', 'courses.name as course_name', 'teachers.name as teacher_name')

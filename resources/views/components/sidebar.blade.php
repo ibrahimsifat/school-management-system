@@ -100,6 +100,7 @@
                         <x-sidebar.menuItem :$path text='Dashboard' url='/teacher/dashboard'
                             iconText='fas fa-tachometer-alt' />
                         <x-sidebar.menuItem :$path text='My Account' url='/teacher/my-account' iconText='fas fa-user' />
+                        <x-sidebar.menuItem :$path text='My Subjects' url='/teacher/subjects' iconText='fas fa-user' />
 
                         <x-sidebar.menuItem :$path text='Change Password' url='teacher/change-password'
                             iconText='fas fa-book' />

@@ -63,6 +63,10 @@ Route::group(['prefix' => 'teacher', 'middleware' => 'teacher'], function () {
     Route::get('/my-account', [UserController::class, 'editMyAccount'])->name('teacher.account');
     Route::post('/my-account', [UserController::class, 'updateTeacherAccount']);
 
+    // subjects
+    Route::get('/subjects', [AssignClassTeacherController::class, 'teacherSubjects'])->name('teacher.subjects');
+    Route::get('/students', [StudentController::class, 'teacherStudents'])->name('teacher.students');
+
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/change-password', [UserController::class, 'updatePassword']);
 });
