@@ -3,15 +3,16 @@
         <x-slot:title>
             {{ $title }}
         </x-slot:title>
-        <x-contentHeader title="AssignSubject List" home='Home' url='admin/dashboard' pageTitle="AssignSubject List" />
+        <x-contentHeader title="AssignClassTeacher List" home='Home' url='admin/dashboard'
+            pageTitle="AssignClassTeacher List" />
         @include('utils._messages')
         <section class="content">
             <div class="container-fluid">
                 <div class="row ">
 
                     <div class="md-col-6 ml-auto mr-3 mb-3"style="text-align: right;">
-                        <a href="{{ route('assignSubject.create') }}" class="btn btn-primary text-right">Create
-                            AssignSubject</a>
+                        <a href="{{ route('assignClassTeacher.create') }}" class="btn btn-primary text-right">Create
+                            AssignClassTeacher</a>
                     </div>
 
 
@@ -22,15 +23,15 @@
                         <div class="card ">
                             <div class="card-header row px-5 mt-2">
                                 <div class="md-col-3">
-                                    <h3>Total: {{ $assignSubjects->total() }}</h3>
+                                    <h3>Total: {{ $assignTeachers->total() }}</h3>
                                 </div>
                                 <div class="md-col-9 ml-auto">
                                     <form class="form-group" action="" method="GET">
                                         <div class="input-group ">
                                             <input type="text" name="course" class="form-control "
                                                 placeholder="Course Name" value={{ Request::get('course') }}>
-                                            <input type="text" name="subject" class="form-control "
-                                                placeholder="Subject Name" value={{ Request::get('subject') }}>
+                                            <input type="text" name="teacher" class="form-control "
+                                                placeholder="Teacher Name" value={{ Request::get('teacher') }}>
 
                                             <select type="text" name="status" class="form-control "
                                                 placeholder="Status" value={{ Request::get('status') }}>
@@ -54,7 +55,8 @@
                                                 </button>
                                             </div>
                                             <div class="input-group-append">
-                                                <a href="{{ route('assignSubject.index') }}" class="btn  btn-warning">
+                                                <a href="{{ route('assignClassTeacher.index') }}"
+                                                    class="btn  btn-warning">
                                                     <i class="fa fa-cancel"></i>
                                                     Clear
                                                 </a>
@@ -71,50 +73,50 @@
                                         <tr>
                                             <th style="width: 10px">#</th>
                                             <th>Course Name</th>
-                                            <th>Subjects Name</th>
+                                            <th>Teachers Name</th>
                                             <th>Created By</th>
-                                            <th>Created Date</th>
                                             <th>Status</th>
+                                            <th>Created Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($assignSubjects as $assignSubject)
+                                        @foreach ($assignTeachers as $assignClassTeacher)
                                             <tr>
-                                                <td>{{ $assignSubject->id }}</td>
-                                                <td>{{ $assignSubject->course_name }}</td>
-                                                <td>{{ $assignSubject->subject_name }}</td>
-                                                <td>{{ $assignSubject->created_by }} </td>
+                                                <td>{{ $assignClassTeacher->id }}</td>
+                                                <td>{{ $assignClassTeacher->course_name }}</td>
+                                                <td>{{ $assignClassTeacher->teacher_name }}</td>
+                                                <td>{{ $assignClassTeacher->created_by }} </td>
                                                 <td>
-                                                    @if ($assignSubject->status == 'active')
+                                                    @if ($assignClassTeacher->status == 'active')
                                                         <span class="badge badge-success right">
-                                                            {{ $assignSubject->status }}</span>
+                                                            {{ $assignClassTeacher->status }}</span>
                                                     @else
                                                         <span class="badge badge-danger right">
-                                                            {{ $assignSubject->status }}</span>
+                                                            {{ $assignClassTeacher->status }}</span>
                                                     @endif
 
                                                 </td>
-                                                <td>{{ date('d M Y h:i A', strtotime($assignSubject->created_at)) }}
+                                                <td>{{ date('d M Y h:i A', strtotime($assignClassTeacher->created_at)) }}
                                                 </td>
                                                 <td>
                                                     <div class="">
-                                                        <a href="{{ url('admin/assign_subjects/edit/' . $assignSubject->id) }}"
+                                                        <a href="{{ url('admin/assign_class_teachers/edit/' . $assignClassTeacher->id) }}"
                                                             class="btn btn-warning"> Edit</a>
-                                                        <a href="{{ url('admin/assign_subjects/edit_single/' . $assignSubject->id) }}"
+                                                        <a href="{{ url('admin/assign_class_teachers/edit_single/' . $assignClassTeacher->id) }}"
                                                             class="btn btn-warning"> Edit Single</a>
 
                                                         <a data-toggle="modal"
-                                                            data-target="#exampleModalCenter{{ $assignSubject->id }}"
+                                                            data-target="#exampleModalCenter{{ $assignClassTeacher->id }}"
                                                             class="btn btn-danger"> Delete</a>
                                                         {{-- delete confirmation Button --}}
                                                         <?php
-                                                        $href = url('admin/assign_subjects/destroy/' . $assignSubject->id);
-                                                        $id = $assignSubject->id;
+                                                        $href = url('admin/assign_class_teachers/destroy/' . $assignClassTeacher->id);
+                                                        $id = $assignClassTeacher->id;
                                                         ?>
                                                         <!-- Modal -->
-                                                        <x-delete-modal data='Assign Subject' :href="$href"
+                                                        <x-delete-modal data='Assign Teacher' :href="$href"
                                                             :id="$id" />
                                                     </div>
                                                 </td>
@@ -122,7 +124,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="mt-2 mx-auto text-center"> {{ $assignSubjects->links() }}</div>
+                                <div class="mt-2 mx-auto text-center"> {{ $assignTeachers->links() }}</div>
 
                             </div>
                             <!-- /.card-body -->

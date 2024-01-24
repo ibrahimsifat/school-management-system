@@ -190,7 +190,14 @@ class User extends Authenticatable
 
         return $result;
     }
-
+    public static function getTeacherById($id)
+    {
+        return User::where('role', 'teacher')->where('id', $id)->first();
+    }
+    static public function getActiveTeachers()
+    {
+        return  User::where('status', 'active')->where('role', 'teacher')->get();
+    }
     static public function getGuardianStudents($guardianId)
     {
         $user = User::select(

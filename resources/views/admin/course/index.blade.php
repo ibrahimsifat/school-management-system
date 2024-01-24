@@ -27,21 +27,32 @@
                                 <div class="md-col-9 ml-auto">
                                     <form class="form-group" action="" method="GET">
                                         <div class="input-group ">
-                                            <input type="text" name="name" class="form-control form-control-lg"
+                                            <input type="text" name="name" class="form-control "
                                                 placeholder="name" value={{ Request::get('name') }}>
 
-                                            <input type="text" name="status" class="form-control form-control-lg"
+                                            <select type="text" name="status" class="form-control "
                                                 placeholder="Status" value={{ Request::get('status') }}>
-                                            <input type="date" name="date" class="form-control form-control-lg"
+                                                <option selected disabled value="">Search Status</option>
+                                                <option value="pending"
+                                                    {{ Request::get('status') === 'pending' ? 'selected' : '' }}>
+                                                    Pending</option>
+                                                <option value="active"
+                                                    {{ Request::get('status') === 'active' ? 'selected' : '' }}>Active
+                                                </option>
+                                                <option value="inactive"
+                                                    {{ Request::get('status') === 'inactive' ? 'selected' : '' }}>
+                                                    Inactive</option>
+                                            </select>
+                                            <input type="date" name="date" class="form-control "
                                                 value={{ Request::get('date') }}>
                                             <div class="input-group-append">
-                                                <button type="submit" class="btn btn-lg btn-primary">
+                                                <button type="submit" class="btn  btn-primary">
                                                     <i class="fa fa-search"></i>
                                                     Search
                                                 </button>
                                             </div>
                                             <div class="input-group-append">
-                                                <a href="{{ route('course.index') }}" class="btn btn-lg btn-warning">
+                                                <a href="{{ route('course.index') }}" class="btn  btn-warning">
                                                     <i class="fa fa-cancel"></i>
                                                     Clear
                                                 </a>

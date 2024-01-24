@@ -33,15 +33,32 @@
                                             <input type="text" name="name" class="form-control "
                                                 placeholder="name" value={{ Request::get('name') }}>
 
-                                            <input type="text" name="status" class="form-control "
+                                            <select type="text" name="status" class="form-control "
                                                 placeholder="Status" value={{ Request::get('status') }}>
+                                                <option selected disabled value="">Search Status</option>
+                                                <option value="pending"
+                                                    {{ Request::get('status') === 'pending' ? 'selected' : '' }}>
+                                                    Pending</option>
+                                                <option value="active"
+                                                    {{ Request::get('status') === 'active' ? 'selected' : '' }}>Active
+                                                </option>
+                                                <option value="inactive"
+                                                    {{ Request::get('status') === 'inactive' ? 'selected' : '' }}>
+                                                    Inactive</option>
+                                            </select>
 
 
                                             <select id="Types" class="form-control" id='types' name='type'
                                                 value={{ Request::get('status') }}>
-                                                <option value="practical">Practical</option>
-                                                <option value="ًworkshop">Workshop</option>
-                                                <option value="theory">Theory</option>
+                                                <option value="practical"
+                                                    {{ Request::get('practical') === 'practical' ? 'selected' : '' }}>
+                                                    Practical</option>
+                                                <option value="ًworkshop"
+                                                    {{ Request::get('workshop') === 'workshop' ? 'selected' : '' }}>
+                                                    Workshop</option>
+                                                <option value="theory"
+                                                    {{ Request::get('theory') === 'theory' ? 'selected' : '' }}>
+                                                    Theory</option>
                                             </select>
 
 

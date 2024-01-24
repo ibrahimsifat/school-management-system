@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
@@ -157,6 +158,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/teachers/students/add/{id}/{studentId}', [TeacherController::class, 'addStudent']);
     Route::get('/teachers/students/remove/{id}/{studentId}', [TeacherController::class, 'removeStudent']);
     Route::get('/teachers/destroy/{id}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
+
+
+    /// assign_class_teachers route
+    Route::get('/assign_class_teachers', [AssignClassTeacherController::class, 'index'])->name('assignClassTeacher.index');
+    Route::get('/assign_class_teachers/create', [AssignClassTeacherController::class, 'create'])->name('assignClassTeacher.create');
+    Route::post('/assign_class_teachers/create', [AssignClassTeacherController::class, 'store']);
+    Route::get('/assign_class_teachers/edit/{id}', [AssignClassTeacherController::class, 'edit'])->name('assignClassTeacher.edit');
+    Route::post('/assign_class_teachers/edit/{id}', [AssignClassTeacherController::class, 'update']);
+    Route::get('/assign_class_teachers/edit_single/{id}', [AssignClassTeacherController::class, 'edit_single'])->name('assignClassTeacher.edit_single');
+    Route::post('/assign_class_teachers/edit_single/{id}', [AssignClassTeacherController::class, 'update_single']);
+    Route::get('/assign_class_teachers/destroy/{id}', [AssignClassTeacherController::class, 'destroy']);
 
 
     // file route

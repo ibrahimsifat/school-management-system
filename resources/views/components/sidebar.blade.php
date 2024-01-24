@@ -69,12 +69,15 @@
 
                         <x-sidebar.menuItem :$path text='Subject' url='admin/subjects' iconText='fas fa-book' />
 
-                        <x-sidebar.menuItem :$path text='Assign Subject' url='admin/assign_subjects'
-                            iconText='fas fa-book' />
-
                         <x-sidebar.menuItem :$path text='Student' url='admin/students' iconText='fas fa-book' />
                         <x-sidebar.menuItem :$path text='Guardian' url='admin/guardians' iconText='fas fa-book' />
                         <x-sidebar.menuItem :$path text='Teacher' url='admin/teachers' iconText='fas fa-book' />
+
+                        <x-sidebar.menuItem :$path text='Assign Subject' url='admin/assign_subjects'
+                            iconText='fas fa-book' />
+                        <x-sidebar.menuItem :$path text='Assign Class Teachers' url='admin/assign_class_teachers'
+                            iconText='fas fa-book' />
+
 
                         <x-sidebar.menuItem :$path text='Change Password' url='admin/change-password'
                             iconText='fas fa-book' />

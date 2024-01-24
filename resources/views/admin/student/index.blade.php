@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body p-0"style="overflow: auto">
+                    <div class="card-body p-0" style="overflow: auto">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
