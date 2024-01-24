@@ -44,7 +44,7 @@ class UserController extends Controller
                 'title' => 'My Account',
                 'teacher' => $user,
             ]);
-        } elseif ($user->role == 'parent') {
+        } elseif ($user->role == 'guardian') {
             return view('guardian.myAccount', [
                 'title' => 'My Account',
                 'guardian' => $user,

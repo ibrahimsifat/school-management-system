@@ -26,8 +26,8 @@ class AuthController extends Controller
                 return redirect('teacher/dashboard')
                     ->with('success', 'You are logged in successfully');
 
-            if (Auth::user()->role == 'parent')
-                return redirect('parent/dashboard')
+            if (Auth::user()->role == 'guardian')
+                return redirect('guardians/dashboard')
                     ->with('success', 'You are logged in successfully');
 
             if (Auth::user()->role == 'admin')
@@ -51,14 +51,14 @@ class AuthController extends Controller
         ], $remember)) {
             // Authentication passed...
             if (Auth::user()->role == 'student')
-                return redirect('student/dashboard')
+                return redirect('students/dashboard')
                     ->with('success', 'You are logged in successfully');
 
             if (Auth::user()->role == 'teacher')
                 return redirect('teacher/dashboard')
                     ->with('success', 'You are logged in successfully');
 
-            if (Auth::user()->role == 'parent')
+            if (Auth::user()->role == 'guardian')
                 return redirect('guardians/dashboard')
                     ->with('success', 'You are logged in successfully');
 

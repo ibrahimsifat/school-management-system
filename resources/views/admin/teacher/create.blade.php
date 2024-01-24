@@ -5,7 +5,7 @@
         <x-slot:title>
             {{ $title }}
         </x-slot:title>
-        <x-contentHeader :$title home='Home' url='parent/dashboard' pageTitle="Create Parent" />
+        <x-contentHeader :$title home='Home' url='guardian/dashboard' pageTitle="Create Guardian" />
 
         <section class="content">
             <div class="container-fluid">
@@ -155,7 +155,7 @@
 
 
                                 <div class="card-footer">
-                                    <x-button type='submit' label='Create Parent' class="btn-block" />
+                                    <x-button type='submit' label='Create Guardian' class="btn-block" />
                                 </div>
                             </form>
                         </div>

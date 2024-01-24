@@ -84,13 +84,13 @@
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
                         }
                     @elseif ($role === 'student')
-                        <x-sidebar.menuItem :$path text='Dashboard' url='/student/dashboard'
+                        <x-sidebar.menuItem :$path text='Dashboard' url='/students/dashboard'
                             iconText='fas fa-tachometer-alt' />
-                        <x-sidebar.menuItem :$path text='Student' url='/students' iconText='fas fa-user' />
+                        <x-sidebar.menuItem :$path text='My Subjects' url='/students/subjects' iconText='fas fa-user' />
 
                         <x-sidebar.menuItem :$path text='My Account' url='students/my-account' iconText='fas fa-book' />
 
-                        <x-sidebar.menuItem :$path text='Change Password' url='student/change-password'
+                        <x-sidebar.menuItem :$path text='Change Password' url='students/change-password'
                             iconText='fas fa-book' />
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
                     @elseif ($role === 'teacher')
@@ -101,10 +101,11 @@
                         <x-sidebar.menuItem :$path text='Change Password' url='teacher/change-password'
                             iconText='fas fa-book' />
                         <x-sidebar.menuItem :$path text='Logout' url='/logout' iconText='fas fa-out' />
-                    @elseif ($role === 'parent')
+                    @elseif ($role === 'guardian')
                         <x-sidebar.menuItem :$path text='Dashboard' url='/guardians/dashboard'
                             iconText='fas fa-tachometer-alt' />
-                        <x-sidebar.menuItem :$path text='Guardian' url='/guardians/list' iconText='fas fa-user' />
+                        <x-sidebar.menuItem :$path text='My Students' url='/guardians/my-students'
+                            iconText='fas fa-user' />
 
                         <x-sidebar.menuItem :$path text='My Account' url='guardians/my-account'
                             iconText='fas fa-book' />

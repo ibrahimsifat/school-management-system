@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subject;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
+use App\Models\AssignSubject;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -134,5 +135,19 @@ class SubjectController extends Controller
 
             return redirect()->back()->with('error', $th->getMessage());
         }
+    }
+
+
+    /// student section
+
+    public function subjects(Subject $subject)
+    {
+        $courseId = Auth::user()->course_id;
+        $subjects = AssignSubject::getClassSubjects($courseId);
+
+        return view('student.subjects', [
+            'title' => 'Subjects',
+            'subjects' => $subjects,
+        ]);
     }
 }

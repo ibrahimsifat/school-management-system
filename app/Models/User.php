@@ -111,11 +111,15 @@ class User extends Authenticatable
         $user = $user->orderBy('users.updated_at', 'desc')->paginate(8);
         return $user;
     }
+    static public function getActiveStudent($studentId)
+    {
+        return self::where('role', 'student')->where('id', $studentId)->where('status', 'active')->first();
+    }
     public static function getGuardians()
     {
         $query = self::select('users.*', 'users.name as guardian_name')
             ->leftJoin('users as guardians', 'users.id', '=', 'guardians.guardian_id')
-            ->where('users.role', 'parent');
+            ->where('users.role', 'guardian');
 
         // Check if email, name, and status are searched
         $requestedEmail = request('email');
@@ -148,6 +152,7 @@ class User extends Authenticatable
 
         return $result;
     }
+
     public static function getTeachers()
     {
         $query = self::select('users.*', 'users.name as guardian_name')
@@ -188,7 +193,13 @@ class User extends Authenticatable
 
     static public function getGuardianStudents($guardianId)
     {
-        return User::where('role', 'student')->where('guardian_id', $guardianId)->get();
+        $user = User::select(
+            'users.*',
+            'courses.name as course_name'
+        )
+            ->leftJoin('courses', 'courses.id', '=', 'users.course_id')
+            ->where('guardian_id', $guardianId);
+        return $user->get();
     }
     static public function getNotGuardianStudents($guardianId)
     {
@@ -211,7 +222,7 @@ class User extends Authenticatable
     }
     static public function getGuardian($id)
     {
-        return User::where('id', $id)->where('role', 'parent')->first();
+        return User::where('id', $id)->where('role', 'guardian')->first();
     }
     static public function getTeacher($id)
     {

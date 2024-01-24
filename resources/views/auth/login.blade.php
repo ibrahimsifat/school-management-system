@@ -30,7 +30,7 @@
                     <div class="row">
 
                         <div class="icheck-primary">
-                            <input type="checkbox" id="remember" required name="remember">
+                            <input type="checkbox" id="remember" name="remember">
                             <label for="remember">
                                 Remember Me
                             </label>

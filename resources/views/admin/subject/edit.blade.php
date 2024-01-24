@@ -18,7 +18,7 @@
                                 <div class="card-body">
 
                                     <div class="form-group">
-                                        <label for='name'>Class Name </label>
+                                        <label for='name'>Subject Name </label>
                                         <input type='name' class="form-control" id='name' name='name'
                                             required placeholder="Name"value={{ $subject->name }}>
                                     </div>

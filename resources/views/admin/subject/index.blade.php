@@ -72,9 +72,9 @@
                                             <th style="width: 10px">#</th>
                                             <th>Name</th>
                                             <th>Created By</th>
-                                            <th>Created Date</th>
                                             <th>Status</th>
                                             <th>Types</th>
+                                            <th>Created Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

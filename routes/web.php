@@ -13,6 +13,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use App\Models\AssignSubject;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,9 @@ Route::group(['prefix' => 'students', 'middleware' => 'student'], function () {
     Route::get('/my-account', [UserController::class, 'editMyAccount'])->name('student.account');
     Route::post('/my-account', [UserController::class, 'updateStudentAccount']);
 
+    // subject
+    Route::get('/subjects', [SubjectController::class, 'subjects'])->name('student.subjects');
+
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/change-password', [UserController::class, 'updatePassword']);
 });
@@ -62,13 +66,18 @@ Route::group(['prefix' => 'teacher', 'middleware' => 'teacher'], function () {
     Route::post('/change-password', [UserController::class, 'updatePassword']);
 });
 
-//parent group route
-Route::group(['prefix' => 'guardians', 'middleware' => 'parent'], function () {
+//guardian group route
+Route::group(['prefix' => 'guardians', 'middleware' => 'guardian'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('guardian.dashboard');
     Route::get('/my-account', [UserController::class, 'editMyAccount'])->name('guardian.account');
     Route::post('/my-account', [UserController::class, 'updateGuardianAccount']);
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/change-password', [UserController::class, 'updatePassword']);
+
+
+    // students route
+    Route::get('my-students', [StudentController::class, 'guardianStudents'])->name('guardian.students');
+    Route::get('students/subjects/{student_id}', [StudentController::class, 'guardianStudentSubjects'])->name('guardian.students.subjects');
 });
 
 //admin group route

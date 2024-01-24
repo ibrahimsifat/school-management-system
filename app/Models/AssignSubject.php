@@ -58,7 +58,27 @@ class AssignSubject extends Model
             ->paginate(10);
         return $assignSubjects;
     }
+    static public function getPublishedStudentSubjects($course_id)
+    {
+        $assignSubjects = AssignSubject::select('assign_subjects.*', 'courses.name as course_name', 'subjects.name as subject_name', 'subjects.type as subject_type')
+            ->join('courses', 'courses.id', '=', 'assign_subjects.course_id')
+            ->join('subjects', 'subjects.id', '=', 'assign_subjects.subject_id')
+            ->where('assign_subjects.status', '=', 'active')
+            ->where('assign_subjects.course_id', '=', $course_id)
+            ->orderBy('assign_subjects.id', 'desc');
 
+        return $assignSubjects->get();
+    }
+    static public function getClassSubjects($classId)
+    {
+        $assignSubjects = AssignSubject::select('assign_subjects.*', 'courses.name as course_name', 'subjects.name as subject_name')
+            ->join('courses', 'courses.id', '=', 'assign_subjects.course_id')
+            ->join('subjects', 'subjects.id', '=', 'assign_subjects.subject_id')
+            ->where('assign_subjects.course_id', '=', $classId)
+            ->orderBy('assign_subjects.id', 'desc');
+
+        return $assignSubjects->get();
+    }
     static public function getAssignSubjectById($id)
     {
         return AssignSubject::find($id);

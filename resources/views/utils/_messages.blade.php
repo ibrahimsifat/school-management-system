@@ -1,9 +1,9 @@
   <!-- SweetAlert2 -->
-  <x-slot:styles>
-      <link rel="stylesheet" href={{ url('public/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}>
 
-      <link rel="stylesheet" href={{ url('public/plugins/toastr/toastr.min.css') }}>
-  </x-slot:styles>
+  <link rel="stylesheet" href={{ url('public/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}>
+
+  <link rel="stylesheet" href={{ url('public/plugins/toastr/toastr.min.css') }}>
+
 
   {{-- @if (!empty(session('success')))
       <div class="btn btn-success swalDefaultSuccess">
@@ -42,16 +42,15 @@
       </div>
   @endif --}}
 
-  <x-slot:scripts>
-      <script src={{ url('public/plugins/jquery/jquery.min.js') }}></script>
-      <!-- Bootstrap 4 -->
-      <script src={{ url('public/plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
-      <!-- SweetAlert2 -->
-      <script src={{ url('public/plugins/sweetalert2/sweetalert2.min.js') }}></script>
-      <!-- Toastr -->
-      <script src={{ url('public/plugins/toastr/toastr.min.js') }}></script>
+  <script src={{ url('public/plugins/jquery/jquery.min.js') }}></script>
+  <!-- Bootstrap 4 -->
+  <script src={{ url('public/plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
+  <!-- SweetAlert2 -->
+  <script src={{ url('public/plugins/sweetalert2/sweetalert2.min.js') }}></script>
+  <!-- Toastr -->
+  <script src={{ url('public/plugins/toastr/toastr.min.js') }}></script>
 
-      {{-- <script>
+  {{-- <script>
           $(function() {
               var Toast = Swal.mixin({
                   toast: true,
@@ -206,23 +205,22 @@
           });
       </script> --}}
 
-      <script>
-          $(document).ready(function() {
-              @foreach (['success', 'error', 'warning', 'info'] as $type)
-                  @if (session()->has($type))
-                      var Toast = Swal.mixin({
-                          toast: true,
-                          position: 'top-end',
-                          showConfirmButton: false,
-                          timer: 2000
-                      });
+  <script>
+      $(document).ready(function() {
+          @foreach (['success', 'primary', 'error', 'light', 'warning', 'info'] as $type)
+              @if (session()->has($type))
+                  var Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 2000
+                  });
 
-                      Toast.fire({
-                          icon: '{{ $type }}',
-                          title: '{{ session($type) }}'
-                      });
-                  @endif
-              @endforeach
-          });
-      </script>
-  </x-slot:scripts>
+                  Toast.fire({
+                      icon: '{{ $type }}',
+                      title: '{{ session($type) }}'
+                  });
+              @endif
+          @endforeach
+      });
+  </script>

@@ -105,7 +105,7 @@
                                         <label for='admission_number'>Admission Number <x-form.required-icon /></label>
 
                                         <input type='text' class="form-control" id='admission_number'
-                                            name='admission_number' placeholder="Admission Number"
+                                            name='admission_number' placeholder="Admission Number" required
                                             value={{ old('admission_number') }}>
                                         <p class="text-danger">{{ $errors->first('admission_number') }}</p>
 

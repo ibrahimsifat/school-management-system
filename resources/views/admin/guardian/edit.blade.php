@@ -3,7 +3,7 @@
         <x-slot:title>
             {{ $title }}
         </x-slot:title>
-        <x-contentHeader :$title home='Home' url='parent/dashboard' pageTitle="Update Parent" />
+        <x-contentHeader :$title home='Home' url='guardian/dashboard' pageTitle="Update Guardian" />
 
         <section class="content">
             <div class="container-fluid">
@@ -121,7 +121,7 @@
 
 
                                 <div class="card-footer">
-                                    <x-button type='submit' label='Update Parent' class="btn-block" />
+                                    <x-button type='submit' label='Update Guardian' class="btn-block" />
                                 </div>
                             </form>
                         </div>

@@ -65,7 +65,7 @@ class GuardianController extends Controller
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->status = $request->status;
-            $user->role = 'parent';
+            $user->role = 'guardian';
             $user->last_name = $request->last_name;
             $user->mobile_number = $request->mobile_number;
             $user->gender = $request->gender;

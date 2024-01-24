@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignSubject;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -213,5 +215,42 @@ class StudentController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
+    }
+
+
+
+    /**
+     * Display the guardianStudents  resource.
+     */
+
+    public function guardianStudents(Request $request)
+    {
+        $user = Auth::user();
+        if (!$user->role == 'guardian') {
+            return redirect()->back()->with('error', 'You are not authorized to access this page');
+        }
+
+        $students = User::getGuardianStudents($user->id);
+        return view('guardian.guardianStudents', [
+            'title' => 'Guardian Students',
+            'students' => $students
+        ]);
+    }
+
+    /**
+     * Display the guardianStudent Subjects  resource.
+     */
+    public function guardianStudentSubjects(Request $request, $studentId)
+    {
+        $student = User::getActiveStudent($studentId);
+        if (!$student) {
+            return redirect()->back()->with('error', 'Student not found');
+        }
+        $subjects = AssignSubject::getPublishedStudentSubjects($student->course_id);
+
+        return view('guardian.guardianStudentSubjects', [
+            'title' => 'Guardian Student Subjects',
+            'subjects' => $subjects
+        ]);
     }
 }

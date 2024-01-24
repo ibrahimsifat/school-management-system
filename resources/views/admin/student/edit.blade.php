@@ -60,7 +60,7 @@
                                     <div class="form-group col-md-6">
                                         <label for='gender'>Gender <x-form.required-icon /></label>
                                         <select type='gender' class="form-control" id='gender' name='gender'
-                                            value={{ old('gender', $user->gender) }}>
+                                            required value={{ old('gender', $user->gender) }}>
                                             <option selected disabled value="">Select Gender</option>
                                             <option {{ old('gender', $user->gender) == 'male' ? 'selected' : '' }}
                                                 value="male">Male
@@ -100,7 +100,7 @@
                                         <label for='admission_number'>Admission Number <x-form.required-icon /></label>
 
                                         <input type='text' class="form-control" id='admission_number'
-                                            name='admission_number' placeholder="Admission Number"
+                                            name='admission_number' placeholder="Admission Number" required
                                             value={{ old('admission_number', $user->admission_number) }}>
                                         <p class="text-danger">{{ $errors->first('admission_number') }}</p>
 
