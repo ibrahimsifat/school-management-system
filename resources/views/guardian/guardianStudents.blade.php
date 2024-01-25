@@ -3,7 +3,7 @@
         <x-slot:title>
             {{ $title }}
         </x-slot:title>
-        <x-contentHeader title="Subject List" home='Home' url='admin/dashboard' pageTitle="Subject List" />
+        <x-contentHeader title="Subject List" home='Home' url='admin/dashboard' pageTitle="Students List" />
         @include('utils._messages')
 
         <div class="container-fluid">

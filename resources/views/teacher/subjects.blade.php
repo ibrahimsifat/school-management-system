@@ -20,16 +20,41 @@
                                             <th>Class Name</th>
                                             <th>Subject Name</th>
                                             <th>Subject Type</th>
+                                            <th>Class Timetable</th>
+                                            <th>Duration</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         @foreach ($getClassesSubjects as $getClassesSubject)
                                             <tr>
+                                                @php
+                                                    $classSubject = $getClassesSubject->getTeacherTimetable($getClassesSubject->course_id, $getClassesSubject->subject_id);
+                                                @endphp
+                                                {{-- {{ $getClassesSubject }} --}}
                                                 <td>{{ $getClassesSubject->id }}</td>
                                                 <td>{{ $getClassesSubject->course_name }}</td>
                                                 <td>{{ $getClassesSubject->subject_name }} </td>
                                                 <td>{{ $getClassesSubject->subject_type }} </td>
+                                                <td>
+
+                                                    @if ($classSubject)
+                                                        {{ $classSubject->start_time }} to {{ $classSubject->end_time }}
+                                                        <br>
+                                                        Room-Number: <strong>{{ $classSubject->room_number }}</strong>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($classSubject)
+                                                        {{ $classSubject->duration }}
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ url('teacher/classes/timetables/' . $getClassesSubject->course_id . '/' . $getClassesSubject->subject_id) }}"
+                                                        class="btn btn-primary"> Student Subjects</a>
+
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

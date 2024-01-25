@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileController;
@@ -44,13 +45,14 @@ Route::post('/reset/{token}', [AuthController::class, 'resetPassword']);
 
 //student group route
 Route::group(['prefix' => 'students', 'middleware' => 'student'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('student.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/my-account', [UserController::class, 'editMyAccount'])->name('student.account');
     Route::post('/my-account', [UserController::class, 'updateStudentAccount']);
 
     // subject
     Route::get('/subjects', [SubjectController::class, 'subjects'])->name('student.subjects');
+    Route::get('/class-timetables', [ClassTimetableController::class, 'classTimetables'])->name('student.classTimetables');
 
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/change-password', [UserController::class, 'updatePassword']);
@@ -58,7 +60,7 @@ Route::group(['prefix' => 'students', 'middleware' => 'student'], function () {
 
 //teacher group route
 Route::group(['prefix' => 'teacher', 'middleware' => 'teacher'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('teacher.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/my-account', [UserController::class, 'editMyAccount'])->name('teacher.account');
     Route::post('/my-account', [UserController::class, 'updateTeacherAccount']);
@@ -67,13 +69,16 @@ Route::group(['prefix' => 'teacher', 'middleware' => 'teacher'], function () {
     Route::get('/subjects', [AssignClassTeacherController::class, 'teacherSubjects'])->name('teacher.subjects');
     Route::get('/students', [StudentController::class, 'teacherStudents'])->name('teacher.students');
 
+    // timetables
+    Route::get('/classes/timetables/{course_id}/{subject_id}', [ClassTimetableController::class, 'teacherTimetables'])->name('teacher.timetables');
+
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/change-password', [UserController::class, 'updatePassword']);
 });
 
 //guardian group route
 Route::group(['prefix' => 'guardians', 'middleware' => 'guardian'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('guardian.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/my-account', [UserController::class, 'editMyAccount'])->name('guardian.account');
     Route::post('/my-account', [UserController::class, 'updateGuardianAccount']);
     Route::get('/change-password', [UserController::class, 'changePassword']);
@@ -96,7 +101,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::post('/my-account', [UserController::class, 'updateAdminAccount']);
 
     // admin route
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/list', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
     Route::post('/create', [AdminController::class, 'store']);
@@ -174,6 +179,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::post('/assign_class_teachers/edit_single/{id}', [AssignClassTeacherController::class, 'update_single']);
     Route::get('/assign_class_teachers/destroy/{id}', [AssignClassTeacherController::class, 'destroy']);
 
+
+
+    // class time table route
+    Route::get('/class_time_tables', [ClassTimetableController::class, 'index'])->name('classTimeTable.index');
+    Route::post('/class_time_tables', [ClassTimetableController::class, 'store']);
+    Route::post('/class_time_tables/get_subjects', [ClassTimetableController::class, 'getSubject']);
 
     // file route
     Route::get('/files', [FileController::class, 'index'])->name('file.index');

@@ -3,7 +3,7 @@
         <x-slot:title>
             {{ $title }}
         </x-slot:title>
-        <x-contentHeader title="Subject List" home='Home' url='admin/dashboard' pageTitle="Subject List" />
+        <x-contentHeader title="Subject List" home='Home' url='admin/dashboard' pageTitle="Students List" />
         @include('utils._messages')
 
         <div class="container-fluid">
@@ -37,7 +37,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     @foreach ($students as $student)
                                         <tr>
                                             <td>{{ $student->id }}</td>
@@ -75,6 +74,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="mt-2 mx-auto text-center"> {{ $students->links() }}</div>
 
 
                         </div>

@@ -200,9 +200,17 @@ class User extends Authenticatable
     }
     static public function getTeacherStudents($teacherId)
     {
-        return User::select('users.*', '')->join('courses', 'courses.id', '=', 'users.course_id')
-            ->join('assign_class_subjects', 'assign_class_subjects.course_id', '=', 'courses.id')
-            ->join('');
+        $query = User::select('users.*', 'courses.name as course_name',)
+            ->join('courses', 'courses.id', '=', 'users.course_id')
+            ->join('assign_class_teachers', 'assign_class_teachers.course_id', '=', 'courses.id')
+            ->where('assign_class_teachers.teacher_id', $teacherId)
+            ->where('users.role', 'student')
+            ->where('assign_class_teachers.status', 'active')
+            ->where('courses.status', 'active')
+            ->where('users.status', 'active');
+
+        $result = $query->orderBy('users.updated_at', 'desc')->paginate(8);
+        return $result;
     }
     static public function getGuardianStudents($guardianId)
     {
