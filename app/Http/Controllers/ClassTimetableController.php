@@ -260,4 +260,52 @@ class ClassTimetableController extends Controller
             'subject' => $subject
         ]);
     }
+
+    // guardian timetable section
+    public function guardianTimetables(Request $request, $course_id, $subject_id)
+    {
+        $course = Course::getCourseById($course_id);
+        $subject = Subject::getSubjectById($subject_id);
+
+
+        $weeksData = (object)[
+            '1' => 'Monday',
+            '2' => 'Tuesday',
+            '3' => 'Wednesday',
+            '4' => 'Thursday',
+            '5' => 'Friday',
+            '6' => 'Saturday',
+            '7' => 'Sunday'
+        ];
+
+
+        foreach ($weeksData as $weekId => $weekName) {
+            $dataW = [
+                'week_id' => $weekId,
+                'week_name' => $weekName
+            ];
+
+
+            $classSubject = ClassTimetable::GetRecordClassSubject($course_id, $subject_id, $weekId);
+            if (empty($classSubject)) {
+                $dataW['start_time'] = '';
+                $dataW['end_time'] = '';
+                $dataW['room_number'] = '';
+            } else {
+                $dataW['start_time'] = $classSubject->start_time;
+                $dataW['end_time'] = $classSubject->end_time;
+                $dataW['room_number'] = $classSubject->room_number;
+            }
+
+            $results[] = $dataW;
+        }
+
+
+        return view('guardian.classTimetable', [
+            'title' => 'Teacher Class Timetable',
+            'classTimetables' => $results,
+            'course' => $course,
+            'subject' => $subject
+        ]);
+    }
 }

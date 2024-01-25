@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\ParentsController;
@@ -88,6 +89,9 @@ Route::group(['prefix' => 'guardians', 'middleware' => 'guardian'], function () 
     // students route
     Route::get('my-students', [StudentController::class, 'guardianStudents'])->name('guardian.students');
     Route::get('students/subjects/{student_id}', [StudentController::class, 'guardianStudentSubjects'])->name('guardian.students.subjects');
+
+    // timetables
+    Route::get('/students/timetables/{course_id}/{subject_id}', [ClassTimetableController::class, 'guardianTimetables'])->name('guardian.timetables');
 });
 
 //admin group route
@@ -185,6 +189,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/class_time_tables', [ClassTimetableController::class, 'index'])->name('classTimeTable.index');
     Route::post('/class_time_tables', [ClassTimetableController::class, 'store']);
     Route::post('/class_time_tables/get_subjects', [ClassTimetableController::class, 'getSubject']);
+
+
+    // examinations
+    Route::get('/examinations', [ExaminationController::class, 'index'])->name('examination.index');
+    Route::get('/examinations/create', [ExaminationController::class, 'create'])->name('examination.create');
+    Route::post('/examinations/create', [ExaminationController::class, 'store']);
+    Route::get('/examinations/edit/{id}', [ExaminationController::class, 'edit'])->name('examination.edit');
+    Route::post('/examinations/edit/{id}', [ExaminationController::class, 'update']);
+    Route::get('/examinations/destroy/{id}', [ExaminationController::class, 'destroy'])->name('examination.destroy');
+
 
     // file route
     Route::get('/files', [FileController::class, 'index'])->name('file.index');

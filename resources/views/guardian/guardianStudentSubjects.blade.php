@@ -19,6 +19,7 @@
                                             <th>Subject Name</th>
                                             <th>Subject Type</th>
                                             <th>Class Name</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -29,6 +30,8 @@
                                                 <td>{{ $subject->subject_name }}</td>
                                                 <td>{{ $subject->subject_type }}</td>
                                                 <td>{{ $subject->course_name }} </td>
+                                                <td> <a href="{{ url('guardians/students/timetables/' . $subject->course_id . '/' . $subject->subject_id) }}"
+                                                        class="btn btn-primary"> Class TimeTable</a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>

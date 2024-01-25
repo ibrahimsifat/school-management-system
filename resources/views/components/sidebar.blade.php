@@ -94,21 +94,40 @@
 
                        <x-sidebar.menuItem :$path text='Admin' url='admin/list' iconText='fas fa-user' />
 
-                       <x-sidebar.menuItem :$path text='Course' url='admin/courses' iconText='fas fa-book' />
                        <x-sidebar.menuItem :$path text='Gallery' url='admin/files' iconText='fas fa-image' />
-
-                       <x-sidebar.menuItem :$path text='Subject' url='admin/subjects' iconText='fas fa-book' />
-
                        <x-sidebar.menuItem :$path text='Student' url='admin/students' iconText='fas fa-book' />
                        <x-sidebar.menuItem :$path text='Guardian' url='admin/guardians' iconText='fas fa-book' />
                        <x-sidebar.menuItem :$path text='Teacher' url='admin/teachers' iconText='fas fa-book' />
 
-                       <x-sidebar.menuItem :$path text='Assign Subject' url='admin/assign_subjects'
-                           iconText='fas fa-book' />
-                       <x-sidebar.menuItem :$path text='Assign Class Teachers' url='admin/assign_class_teachers'
-                           iconText='fas fa-book' />
-                       <x-sidebar.menuItem :$path text='Class Time Table' url='admin/class_time_tables'
-                           iconText='fas fa-book' />
+                       <li class="nav-item ">
+                           <a class="nav-link">
+                               <i class="nav-icon fas fa-book"></i>
+                               <p>Academics</p>
+                           </a>
+                       </li>
+
+                       <div class="mb-2 ml-4">
+                           <x-sidebar.menuItem :$path text='Course' url='admin/courses' iconText='fas fa-circle' />
+                           <x-sidebar.menuItem :$path text='Subject' url='admin/subjects' iconText='fas fa-circle' />
+                           <x-sidebar.menuItem :$path text='Assign Subject' url='admin/assign_subjects'
+                               iconText='fa fa-circle' />
+                           <x-sidebar.menuItem :$path text='Class Time Table' url='admin/class_time_tables'
+                               iconText='fas fa-circle' />
+                           <x-sidebar.menuItem :$path text='Assign Class Teachers' url='admin/assign_class_teachers'
+                               iconText='fas fa-circle' />
+                       </div>
+                       <li class="nav-item ">
+                           <a class="nav-link">
+                               <i class="nav-icon fas fa-book"></i>
+                               <p>Examinations</p>
+                           </a>
+                       </li>
+
+                       <div class="mb-2 ml-4">
+                           <x-sidebar.menuItem :$path text='Exam List' url='admin/examinations'
+                               iconText='fas fa-circle' />
+                           />
+                       </div>
 
 
                        <x-sidebar.menuItem :$path text='Change Password' url='admin/change-password'
@@ -135,7 +154,8 @@
                            iconText='fas fa-tachometer-alt' />
                        <x-sidebar.menuItem :$path text='My Account' url='/teacher/my-account' iconText='fas fa-user' />
                        <x-sidebar.menuItem :$path text='My Subjects' url='/teacher/subjects' iconText='fas fa-user' />
-                       <x-sidebar.menuItem :$path text='My Students' url='/teacher/students' iconText='fas fa-user' />
+                       <x-sidebar.menuItem :$path text='My Students' url='/teacher/students'
+                           iconText='fas fa-user' />
 
                        <x-sidebar.menuItem :$path text='Change Password' url='teacher/change-password'
                            iconText='fas fa-book' />

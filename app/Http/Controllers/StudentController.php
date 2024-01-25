@@ -247,7 +247,6 @@ class StudentController extends Controller
             return redirect()->back()->with('error', 'Student not found');
         }
         $subjects = AssignSubject::getPublishedStudentSubjects($student->course_id);
-
         return view('guardian.guardianStudentSubjects', [
             'title' => 'Guardian Student Subjects',
             'subjects' => $subjects
