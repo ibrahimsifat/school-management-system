@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Request;
 class Examination extends Model
 {
     use HasFactory;
-
+    protected $table = 'examinations';
     static public function getExaminations()
     {
         $perPage = 10;

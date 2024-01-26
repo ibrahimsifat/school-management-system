@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Request;
 class AssignClassTeacher extends Model
 {
     use HasFactory;
+    protected $table = 'assign_class_teachers';
+
     protected $fillable = [
         'teacher_id',
         'course_id',

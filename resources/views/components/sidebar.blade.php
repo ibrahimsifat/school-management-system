@@ -146,6 +146,8 @@
                        <x-sidebar.menuItem :$path text='Subjects' url='/students/subjects' iconText='fas fa-user' />
                        <x-sidebar.menuItem :$path text='Class Timetable' url='/students/class-timetables'
                            iconText='fas fa-user' />
+                       <x-sidebar.menuItem :$path text='Exam Timetable' url='/students/exams-timetables'
+                           iconText='fas fa-user' />
 
                        <x-sidebar.menuItem :$path text='My Account' url='students/my-account' iconText='fas fa-book' />
 

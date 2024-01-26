@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Request;
 class Course extends Model
 {
     use HasFactory;
-
+    protected $table = 'courses';
     protected $fillable = [
         'name',
         'description',

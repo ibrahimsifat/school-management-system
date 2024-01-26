@@ -3,17 +3,16 @@
         <x-slot:title>
             {{ $title }}
         </x-slot:title>
-        <x-contentHeader title="Class TimeTable List" home='Home' url='admin/dashboard'
-            pageTitle="Class TimeTable List" />
-        @include('utils._messages')
+        <x-contentHeader title="Exam Schedule List" home='Home' url='admin/dashboard' pageTitle="Exam Schedule List" />
         <section class="content">
 
+            @include('utils._messages')
             <div class="container-fluid">
                 <div class="row ">
 
                     <div class="md-col-6 ml-auto mr-3 mb-3"style="text-align: right;">
                         <a href="{{ route('subject.create') }}" class="btn btn-primary text-right">Create
-                            Class TimeTable</a>
+                            Exam Schedule</a>
                     </div>
 
 
@@ -24,7 +23,7 @@
                         <div class="card ">
                             <div class="card-header row px-5 mt-2">
                                 <div class="md-col-3">
-                                    <h5>Class Time Table</h5>
+                                    <h5>Exam Schedule</h5>
                                 </div>
                                 <form class="form-group md-col-12 ml-auto" action="" method="GET">
                                     <div class="input-group md-col-6">

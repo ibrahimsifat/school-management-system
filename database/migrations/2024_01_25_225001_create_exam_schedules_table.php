@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreignId('examination_id')->nullable();
             $table->foreignId('course_id')->nullable();
             $table->foreignId('subject_id')->nullable();
-            $table->foreign('examination_id')->references('id')->on('examinations')->onDelete('cascade');
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('examination_id')->references('id')->on('examinations');
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('subject_id')->references('id')->on('subjects');
             $table->date('exam_date')->nullable();
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->integer('full_marks')->nullable();
             $table->integer('pass_marks')->nullable();
             $table->foreignId('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -55,7 +55,11 @@ Route::group(['prefix' => 'students', 'middleware' => 'student'], function () {
 
     // subject
     Route::get('/subjects', [SubjectController::class, 'subjects'])->name('student.subjects');
+
+    //  timetables
     Route::get('/class-timetables', [ClassTimetableController::class, 'classTimetables'])->name('student.classTimetables');
+
+    Route::get('/exams-timetables', [ExamScheduleController::class, 'ExamsTimetables'])->name('student.examsTimetables');
 
     Route::get('/change-password', [UserController::class, 'changePassword']);
     Route::post('/change-password', [UserController::class, 'updatePassword']);

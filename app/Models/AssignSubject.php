@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Request;
 class AssignSubject extends Model
 {
     use HasFactory;
+    protected $table = 'assign_subjects';
 
     protected $fillable = [
         'name',
