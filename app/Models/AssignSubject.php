@@ -71,7 +71,7 @@ class AssignSubject extends Model
     }
     static public function getClassSubjects($classId)
     {
-        $assignSubjects = AssignSubject::select('assign_subjects.*', 'courses.name as course_name', 'subjects.name as subject_name')
+        $assignSubjects = AssignSubject::select('assign_subjects.*', 'courses.name as course_name', 'subjects.name as subject_name', 'subjects.type as subject_type')
             ->join('courses', 'courses.id', '=', 'assign_subjects.course_id')
             ->join('subjects', 'subjects.id', '=', 'assign_subjects.subject_id')
             ->where('assign_subjects.course_id', '=', $classId)

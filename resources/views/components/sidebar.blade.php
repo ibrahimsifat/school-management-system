@@ -126,7 +126,10 @@
                        <div class="mb-2 ml-4">
                            <x-sidebar.menuItem :$path text='Exam List' url='admin/examinations'
                                iconText='fas fa-circle' />
-                           />
+
+                           <x-sidebar.menuItem :$path text='Exam Schedule' url='admin/exam_schedules'
+                               iconText='fas fa-circle' />
+
                        </div>
 
 
@@ -152,8 +155,10 @@
                    @elseif ($role === 'teacher')
                        <x-sidebar.menuItem :$path text='Dashboard' url='/teacher/dashboard'
                            iconText='fas fa-tachometer-alt' />
-                       <x-sidebar.menuItem :$path text='My Account' url='/teacher/my-account' iconText='fas fa-user' />
-                       <x-sidebar.menuItem :$path text='My Subjects' url='/teacher/subjects' iconText='fas fa-user' />
+                       <x-sidebar.menuItem :$path text='My Account' url='/teacher/my-account'
+                           iconText='fas fa-user' />
+                       <x-sidebar.menuItem :$path text='My Subjects' url='/teacher/subjects'
+                           iconText='fas fa-user' />
                        <x-sidebar.menuItem :$path text='My Students' url='/teacher/students'
                            iconText='fas fa-user' />
 

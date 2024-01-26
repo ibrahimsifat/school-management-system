@@ -3,7 +3,7 @@
         <x-slot:title>
             {{ $title }}
         </x-slot:title>
-        <x-contentHeader :$title home='Home' url='admin/dashboard' pageTitle="Create Class Timetable" />
+        <x-contentHeader :$title home='Home' url='admin/dashboard' pageTitle="Create Exam Schedule" />
 
         <section class="content">
             <div class="container-fluid">

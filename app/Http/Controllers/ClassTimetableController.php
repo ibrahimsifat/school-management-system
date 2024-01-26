@@ -157,12 +157,12 @@ class ClassTimetableController extends Controller
 
     public function classTimetables(Request $request)
     {
-        $course = Auth::user();
+        $user = Auth::user();
         $results = [];
 
         $subjects = [];
-        if ($course) {
-            $subjects = AssignSubject::getClassSubjects($course->id);
+        if ($user) {
+            $subjects = AssignSubject::getClassSubjects($user->course_id);
         }
         // dd($subjects);
         // $weeksData=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
@@ -190,7 +190,7 @@ class ClassTimetableController extends Controller
                 ];
 
 
-                $classSubject = ClassTimetable::GetRecordClassSubject($course->id, $subject->subject_id, $weekId);
+                $classSubject = ClassTimetable::GetRecordClassSubject($user->course_id, $subject->subject_id, $weekId);
                 if (empty($classSubject)) {
                     $dataW['start_time'] = '';
                     $dataW['end_time'] = '';

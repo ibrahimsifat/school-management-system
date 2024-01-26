@@ -8,6 +8,7 @@ use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExaminationController;
+use App\Http\Controllers\ExamScheduleController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\ParentsController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use App\Models\AssignSubject;
+use App\Models\ExamSchedule;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Route;
 
@@ -198,6 +200,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/examinations/edit/{id}', [ExaminationController::class, 'edit'])->name('examination.edit');
     Route::post('/examinations/edit/{id}', [ExaminationController::class, 'update']);
     Route::get('/examinations/destroy/{id}', [ExaminationController::class, 'destroy'])->name('examination.destroy');
+
+    // exam_schedules
+    Route::get('/exam_schedules', [ExamScheduleController::class, 'index'])->name('examSchedule.index');
+    Route::get('/exam_schedules/create', [ExamScheduleController::class, 'create'])->name('exam_schedule.create');
+    Route::post('/exam_schedules/create', [ExamScheduleController::class, 'store']);
+    Route::get('/exam_schedules/edit/{id}', [ExamScheduleController::class, 'edit'])->name('examSchedule.edit');
+    Route::post('/exam_schedules/edit/{id}', [ExamScheduleController::class, 'update']);
+
 
 
     // file route
